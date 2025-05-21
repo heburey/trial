@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <!-- Genel Ayarlar ve Stil Dosyaları -->
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="images/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
@@ -34,6 +35,9 @@
     .animate-spin-slow {
       animation: spin-slow 3s linear infinite;
     }
+    .rounded-full-loader {
+      border-radius: 9999px;
+    }
   </style>
   <script>
     window.addEventListener("load", () => {
@@ -47,8 +51,9 @@
   </script>
 </head>
 <body>
+  <!-- Yüklenme Ekranı -->
   <div id="preloader" class="fixed inset-0 bg-cover bg-center z-50 flex items-center justify-center flex-col gap-4" style="background-image: url('images/background.jpg');">
-    <img src="images/logo.png" alt="Yükleniyor" class="w-20 h-20 animate-spin-slow">
+    <img src="images/logo.png" alt="Yükleniyor" class="w-20 h-20 animate-spin-slow rounded-full-loader">
     <h1 class="text-white text-xl animate-pulse">GameCapsuleTV yükleniyor...</h1>
   </div>
 
@@ -66,6 +71,7 @@
     </div>
   </nav>
 
+  <!-- Açılış Bölümü -->
   <section class="flex flex-col items-center justify-center h-screen text-center relative overflow-hidden" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
     <div class="absolute w-full h-full bg-black opacity-60 z-0"></div>
     <div class="relative z-10">
@@ -75,22 +81,24 @@
     </div>
   </section>
 
+  <!-- YouTube Bölümü -->
   <section id="youtube" class="p-8" data-aos="fade-right">
     <h2 class="text-3xl font-bold mb-4">YouTube</h2>
     <div class="platform-card bg-gray-800 p-4 rounded-lg shadow-md">
       <div class="w-full max-w-5xl mx-auto">
         <iframe style="width: 100%; height: 400px; border-radius: 12px;"
           src="https://www.youtube.com/embed/NnXsFPZHqHU"
-    title="YILIN OYUNU MU? | Split Fiction İnceleme | Nasıl Oyun? #5 (SPOILERSIZ)"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
+          title="YILIN OYUNU MU? | Split Fiction İnceleme | Nasıl Oyun? #5 (SPOILERSIZ)"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
         </iframe>
       </div>
     </div>
   </section>
 
+  <!-- Yayın Takvimi Bölümü -->
   <section id="schedule" class="p-8" data-aos="zoom-in">
     <h2 class="text-3xl font-bold mb-4">Haftalık Yayın Takvimi</h2>
     <div class="flex justify-center">
@@ -98,28 +106,27 @@
     </div>
   </section>
 
+  <!-- Hakkımda Bölümü -->
   <div id="about" class="h-32 -mt-32"></div>
-<section class="p-8 scroll-mt-24" data-aos="fade-up">
+  <section class="p-8 scroll-mt-24" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-6">Hakkımda</h2>
     <div class="flex flex-col md:flex-row items-start gap-6">
       <img src="images/profile.jpg" alt="Cenk Fotoğrafı" class="w-48 h-48 object-cover rounded-xl shadow-md" />
       <p class="text-lg">
-        Merhaba!
-        <br><br>
-        Ben Cenk, 30 yaşındayım. Oyun oynamayı sadece bir hobi olarak değil, bir yaşam biçimi olarak görüyorum. GameCapsuleTV, sadece bir Twitch kanalı ya da YouTube sayfası değil; benim çocukluk hayallerimin dijital dünyaya yansıması.
-        <br><br>
-        Kanalımda neredeyse tüm yeni çıkan oyunları deneyimliyorum. AAA yapımlardan bağımsız projelere, retro klasiklerden güncel sürprizlere kadar geniş bir yelpazem var. Amacım yalnızca oyun oynamak değil; izleyicilerle gerçek bir bağ kurmak, birlikte gülmek, heyecanlanmak, bazen de sinirlenmek... Çünkü işin doğası bu.
-        <br><br>
-        Zamanla sadece yayın açmakla kalmadım; içerik üretmenin, bir topluluk oluşturmanın ve insanlara dokunmanın ne kadar değerli olduğunu gördüm. Bu site de bu yüzden var: beni daha yakından tanıman için.
-        <br><br>
+        Merhaba!<br><br>
+        Ben Cenk, 30 yaşındayım. Oyun oynamayı sadece bir hobi olarak değil, bir yaşam biçimi olarak görüyorum. GameCapsuleTV, sadece bir Twitch kanalı ya da YouTube sayfası değil; benim çocukluk hayallerimin dijital dünyaya yansıması.<br><br>
+        Kanalımda neredeyse tüm yeni çıkan oyunları deneyimliyorum. AAA yapımlardan bağımsız projelere, retro klasiklerden güncel sürprizlere kadar geniş bir yelpazem var. Amacım yalnızca oyun oynamak değil; izleyicilerle gerçek bir bağ kurmak, birlikte gülmek, heyecanlanmak, bazen de sinirlenmek... Çünkü işin doğası bu.<br><br>
+        Zamanla sadece yayın açmakla kalmadım; içerik üretmenin, bir topluluk oluşturmanın ve insanlara dokunmanın ne kadar değerli olduğunu gördüm. Bu site de bu yüzden var: beni daha yakından tanıman için.<br><br>
         Hoş geldin. Artık sen de bu kapsülün bir parçasısın.
       </p>
     </div>
   </section>
 
+  <!-- İletişim ve Sosyal Medya -->
   <section id="contact" class="p-8" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-6">Sosyal Medya ve İletişim</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- 1. Sütun -->
       <div class="flex flex-col gap-4">
         <a href="https://www.twitch.tv/gamecapsuletv" target="_blank" class="flex items-center gap-4 p-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition duration-200 shadow hover:shadow-xl">
           <img src="images/twitch.png" alt="Twitch" class="w-8 h-8 rounded-full ring-2 ring-purple-600">
@@ -130,6 +137,7 @@
           <span class="text-white text-lg font-medium">Instagram</span>
         </a>
       </div>
+      <!-- 2. Sütun -->
       <div class="flex flex-col gap-4">
         <a href="https://www.youtube.com/@Game_Capsule" target="_blank" class="flex items-center gap-4 p-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition duration-200 shadow hover:shadow-xl">
           <img src="images/youtube.png" alt="YouTube" class="w-8 h-8 rounded-full ring-2 ring-purple-600">
@@ -140,6 +148,7 @@
           <span class="text-white text-lg font-medium">Discord</span>
         </a>
       </div>
+      <!-- 3. Sütun -->
       <div class="flex flex-col gap-4">
         <a href="https://kick.com/gamecapsule" target="_blank" class="flex items-center gap-4 p-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition duration-200 shadow hover:shadow-xl">
           <img src="images/kick.png" alt="Kick" class="w-8 h-8 rounded-full ring-2 ring-purple-600">
@@ -153,18 +162,11 @@
     </div>
   </section>
 
+  <!-- AOS ve Sayfa Scroll Scriptleri -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
   </script>
-
-  <footer class="bg-gray-900 text-center text-white py-6 mt-8">
-    <div class="mb-2">
-      <span class="text-sm">📧 gamecapsule@hotmail.com</span>
-    </div>
-    <p class="text-sm">© 2025 GameCapsuleTV – Tüm hakları saklıdır.</p>
-  </footer>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const scrollBtn = document.getElementById("scrollToYoutube");
@@ -181,5 +183,13 @@
       }
     });
   </script>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-center text-white py-6 mt-8">
+    <div class="mb-2">
+      <span class="text-sm">📧 gamecapsule@hotmail.com</span>
+    </div>
+    <p class="text-sm">© 2025 GameCapsuleTV – Tüm hakları saklıdır.</p>
+  </footer>
 </body>
 </html>
