@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <link rel="icon" href="favicon.ico?v=3" type="image/x-icon" /><link rel="icon" type="image/png" href="images/logo.png" />
-  <link rel="icon" type="image/x-icon" href="images/logo.ico" />
-  <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon" />
+  <meta charset="UTF-8" />
+  <link rel="icon" href="images/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GameCapsuleTV</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     body {
       background-color: #0f0f0f;
@@ -37,6 +37,10 @@
     }
     .rounded-full-loader {
       border-radius: 9999px;
+    }
+    #countdown {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 1px;
     }
   </style>
   <script>
@@ -98,13 +102,29 @@
     </div>
   </section>
 
-  <!-- Yayın Takvimi Bölümü -->
-  <section id="schedule" class="p-8" data-aos="zoom-in">
-    <h2 class="text-3xl font-bold mb-4">Haftalık Yayın Takvimi</h2>
-    <div class="flex justify-center">
-      <img src="images/weekly-schedule.jpeg" alt="Haftalık Yayın Takvimi" class="rounded-lg shadow-lg max-w-full h-auto" />
-    </div>
-  </section>
+  <!-- Yayın Takvimi ve Sayaç Bölümü -->
+<section id="schedule" class="p-8" data-aos="zoom-in">
+  <h2 class="text-3xl font-bold mb-4 text-white text-center">Haftalık Yayın Takvimi</h2>
+  <div class="flex justify-center mb-12">
+    <img src="images/weekly-schedule.jpeg" alt="Haftalık Yayın Takvimi" class="rounded-lg shadow-lg max-w-full h-auto" />
+  </div>
+
+  <!-- Sadece Sayaç Kutusu -->
+  <div class="relative max-w-5xl mx-auto mt-14 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
+    <img src="images/rdr2.jpg" alt="RDR2 Arka Plan" class="absolute inset-0 w-full h-full object-cover z-0 scale-105" />
+    <div class="absolute inset-0 bg-black bg-opacity-70 z-10 backdrop-blur-sm"></div>
+    <div class="relative z-20 px-12 py-20 text-center">
+  <div id="countdown" class="text-6xl md:text-7xl font-extrabold text-white tracking-wider drop-shadow-xl py-6 px-10 rounded-2xl inline-block mb-6"></div>
+  <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">Atına atla, macera başlıyor!</h2>
+  <div class="mt-6">
+    <a href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:GameCapsuleTV%20RDR2%20Yay%C4%B1n%C4%B1%0ADESCRIPTION:RDR2%20yay%C4%B1n%C4%B1%20ba%C5%9Fl%C4%B1yor!%20Kat%C4%B1lmak%20i%C3%A7in%20twitch.tv/gamecapsuletv%0ADTSTART:20250525T190000Z%0ADTEND:20250525T203000Z%0ALOCATION:https://twitch.tv/gamecapsuletv%0AEND:VEVENT%0AEND:VCALENDAR" download="rdr2-yayin.ics" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg text-lg transition shadow-md">
+      📅 Takvime Ekle
+    </a>
+  </div>
+</div>
+  </div>
+</section>
+
 
   <!-- Hakkımda Bölümü -->
   <div id="about" class="h-32 -mt-32"></div>
@@ -126,7 +146,6 @@
   <section id="contact" class="p-8" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-6">Sosyal Medya ve İletişim</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- 1. Sütun -->
       <div class="flex flex-col gap-4">
         <a href="https://www.twitch.tv/gamecapsuletv" target="_blank" class="flex items-center gap-4 p-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition duration-200 shadow hover:shadow-xl">
           <img src="images/twitch.png" alt="Twitch" class="w-8 h-8 rounded-full ring-2 ring-purple-600">
@@ -137,7 +156,6 @@
           <span class="text-white text-lg font-medium">Instagram</span>
         </a>
       </div>
-      <!-- 2. Sütun -->
       <div class="flex flex-col gap-4">
         <a href="https://www.youtube.com/@Game_Capsule" target="_blank" class="flex items-center gap-4 p-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition duration-200 shadow hover:shadow-xl">
           <img src="images/youtube.png" alt="YouTube" class="w-8 h-8 rounded-full ring-2 ring-purple-600">
@@ -148,7 +166,6 @@
           <span class="text-white text-lg font-medium">Discord</span>
         </a>
       </div>
-      <!-- 3. Sütun -->
       <div class="flex flex-col gap-4">
         <a href="https://kick.com/gamecapsule" target="_blank" class="flex items-center gap-4 p-4 bg-gray-800 hover:bg-gray-700 rounded-xl transition duration-200 shadow hover:shadow-xl">
           <img src="images/kick.png" alt="Kick" class="w-8 h-8 rounded-full ring-2 ring-purple-600">
@@ -162,26 +179,36 @@
     </div>
   </section>
 
-  <!-- AOS ve Sayfa Scroll Scriptleri -->
+  <!-- AOS ve Scroll Scriptleri -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
-  </script>
-  <script>
     document.addEventListener("DOMContentLoaded", function () {
       const scrollBtn = document.getElementById("scrollToYoutube");
       const target = document.getElementById("youtube");
-
       if (scrollBtn && target) {
         scrollBtn.addEventListener("click", function (e) {
           e.preventDefault();
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       }
     });
+    const countdownTarget = new Date("2025-05-25T22:00:00+03:00").getTime();
+    const countdownElement = document.getElementById("countdown");
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownTarget - now;
+      if (distance <= 0) {
+        clearInterval(countdownInterval);
+        countdownElement.innerHTML = "🎮 Yayın başladı!";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdownElement.innerHTML = `${days}g ${hours}s ${minutes}d ${seconds}sn`;
+    }, 1000);
   </script>
 
   <!-- Footer -->
