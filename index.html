@@ -42,7 +42,14 @@
       font-variant-numeric: tabular-nums;
       letter-spacing: 1px;
     }
-  </style>
+    @keyframes glow {
+    0%, 100% { box-shadow: 0 0 8px rgba(255, 200, 100, 0.2); }
+    50% { box-shadow: 0 0 16px rgba(255, 200, 100, 0.5); }
+  }
+  .glow-hover:hover {
+    animation: glow 1.5s infinite;
+  }
+</style>
   <script>
     window.addEventListener("load", () => {
       const loader = document.querySelector("#preloader");
@@ -86,7 +93,7 @@
   </section>
 
   <!-- YouTube Bölümü -->
-  <section id="youtube" class="p-8" data-aos="fade-right">
+  <section id="youtube" class="p-8" data-aos="zoom-in-up">
     <h2 class="text-3xl font-bold mb-4">YouTube</h2>
     <div class="platform-card bg-gray-800 p-4 rounded-lg shadow-md">
       <div class="w-full max-w-5xl mx-auto">
@@ -143,10 +150,10 @@
 <a 
   href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:GameCapsuleTV%20RDR2%20Yay%C4%B1n%C4%B1%0ADESCRIPTION:RDR2%20yay%C4%B1n%C4%B1%20ba%C5%9Fl%C4%B1yor!%20Kat%C4%B1lmak%20i%C3%A7in%20twitch.tv/gamecapsuletv%0ADTSTART:20250525T190000Z%0ADTEND:20250526T010000Z%0ALOCATION:https://twitch.tv/gamecapsuletv%0AEND:VEVENT%0AEND:VCALENDAR"
   download="rdr2-yayin.ics"
-  class="btn-liquid-fill relative inline-flex items-center gap-2 px-7 py-3 text-white text-lg font-semibold rounded-full overflow-hidden border-2 border-[#d88c64] shadow-xl transform transition duration-300 hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
+  class="btn-liquid-fill glow-hover relative inline-flex items-center gap-2 px-7 py-3 text-white text-lg font-semibold rounded-full overflow-hidden border-2 border-[#d88c64] shadow-xl transform transition duration-300 hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
 >
   <span class="relative z-10 flex items-center gap-2">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 animate-bounce-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 animate-bounce-slow transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
     Takvime Ekle
