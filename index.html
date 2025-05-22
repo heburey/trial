@@ -109,19 +109,62 @@
     <img src="images/weekly-schedule.jpeg" alt="Haftalık Yayın Takvimi" class="rounded-lg shadow-lg max-w-full h-auto" />
   </div>
 
-  <!-- Sadece Sayaç Kutusu -->
+  <!-- Sayaç ve Takvim Butonu -->
   <div class="relative max-w-5xl mx-auto mt-14 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)]">
     <img src="images/rdr2.jpg" alt="RDR2 Arka Plan" class="absolute inset-0 w-full h-full object-cover z-0 scale-105" />
     <div class="absolute inset-0 bg-black bg-opacity-70 z-10 backdrop-blur-sm"></div>
     <div class="relative z-20 px-12 py-20 text-center">
-  <div id="countdown" class="text-6xl md:text-7xl font-extrabold text-white tracking-wider drop-shadow-xl py-6 px-10 rounded-2xl inline-block mb-6"></div>
-  <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">Atına atla, macera başlıyor!</h2>
-  <div class="mt-6">
-    <a href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:GameCapsuleTV%20RDR2%20Yay%C4%B1n%C4%B1%0ADESCRIPTION:RDR2%20yay%C4%B1n%C4%B1%20ba%C5%9Fl%C4%B1yor!%20Kat%C4%B1lmak%20i%C3%A7in%20twitch.tv/gamecapsuletv%0ADTSTART:20250525T190000Z%0ADTEND:20250526T010000Z%0ALOCATION:https://twitch.tv/gamecapsuletv%0AEND:VEVENT%0AEND:VCALENDAR" download="rdr2-yayin.ics" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg text-lg transition shadow-md">
-      📅 Takvime Ekle
-    </a>
-  </div>
-</div>
+      <div id="countdown" class="text-6xl md:text-7xl font-extrabold text-white tracking-wider drop-shadow-xl py-6 px-10 rounded-2xl inline-block mb-6"></div>
+      <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">Atına atla, macera başlıyor!</h2>
+      <div class="mt-8">
+    <style>
+  .btn-liquid-fill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #a41e22;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+  }
+  .btn-liquid-fill:hover::before {
+    transform: scaleX(1);
+  }
+  .btn-liquid-fill > span {
+    position: relative;
+    z-index: 10;
+  }
+</style>
+
+<a 
+  href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:GameCapsuleTV%20RDR2%20Yay%C4%B1n%C4%B1%0ADESCRIPTION:RDR2%20yay%C4%B1n%C4%B1%20ba%C5%9Fl%C4%B1yor!%20Kat%C4%B1lmak%20i%C3%A7in%20twitch.tv/gamecapsuletv%0ADTSTART:20250525T190000Z%0ADTEND:20250526T010000Z%0ALOCATION:https://twitch.tv/gamecapsuletv%0AEND:VEVENT%0AEND:VCALENDAR" 
+  download="rdr2-yayin.ics"
+  class="btn-liquid-fill relative inline-flex items-center gap-2 px-6 py-3 font-semibold text-white border border-white/30 rounded-md overflow-hidden z-10"
+>
+  <span class="flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+    Takvime Ekle
+  </span>
+</a>
+
+
+<style>
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  .animate-bounce-slow {
+    animation: bounce-slow 2s infinite;
+  }
+</style>
+      </div>
+    </div>
   </div>
 </section>
 
