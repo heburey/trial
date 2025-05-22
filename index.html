@@ -141,12 +141,12 @@
 </style>
 
 <a 
-  href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:GameCapsuleTV%20RDR2%20Yay%C4%B1n%C4%B1%0ADESCRIPTION:RDR2%20yay%C4%B1n%C4%B1%20ba%C5%9Fl%C4%B1yor!%20Kat%C4%B1lmak%20i%C3%A7in%20twitch.tv/gamecapsuletv%0ADTSTART:20250525T190000Z%0ADTEND:20250526T010000Z%0ALOCATION:https://twitch.tv/gamecapsuletv%0AEND:VEVENT%0AEND:VCALENDAR" 
+  href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:GameCapsuleTV%20RDR2%20Yay%C4%B1n%C4%B1%0ADESCRIPTION:RDR2%20yay%C4%B1n%C4%B1%20ba%C5%9Fl%C4%B1yor!%20Kat%C4%B1lmak%20i%C3%A7in%20twitch.tv/gamecapsuletv%0ADTSTART:20250525T190000Z%0ADTEND:20250526T010000Z%0ALOCATION:https://twitch.tv/gamecapsuletv%0AEND:VEVENT%0AEND:VCALENDAR"
   download="rdr2-yayin.ics"
-  class="btn-liquid-fill relative inline-flex items-center gap-2 px-6 py-3 font-semibold text-white border border-white/30 rounded-md overflow-hidden z-10"
+  class="btn-liquid-fill relative inline-flex items-center gap-2 px-7 py-3 text-white text-lg font-semibold rounded-full overflow-hidden border-2 border-[#d88c64] shadow-xl transform transition duration-300 hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
 >
-  <span class="flex items-center gap-2">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <span class="relative z-10 flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 animate-bounce-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
     Takvime Ekle
@@ -161,6 +161,36 @@
   }
   .animate-bounce-slow {
     animation: bounce-slow 2s infinite;
+  }
+  .btn-liquid-fill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(110, 20, 20, 0.75), rgba(140, 30, 30, 0.75), rgba(180, 40, 40, 0.75));
+    background-size: 300% 300%;
+    animation: liquid-flow 6s ease infinite;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+    border-radius: inherit;
+    filter: brightness(0.9) contrast(1.2);
+    backdrop-filter: blur(1px);
+  }
+  .btn-liquid-fill:hover::before {
+    transform: scaleX(1);
+  }
+  .btn-liquid-fill > span {
+    position: relative;
+    z-index: 10;
+  }
+  @keyframes liquid-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 </style>
       </div>
