@@ -69,7 +69,7 @@
   <script>
     async function checkKickStatus() {
       try {
-        const response = await fetch("https://corsproxy.io/?https://kick.com/GameCapsuleTV");
+        const response = await fetch("https://api.allorigins.win/raw?url=https://kick.com/GameCapsuleTV");
         const text = await response.text();
         const isLive = text.includes('LIVE NOW');
         const liveBar = document.getElementById("kick-live-status");
