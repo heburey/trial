@@ -75,23 +75,13 @@
         }, 600);
       }
     });
-  const twitchChannel = 'gamecapsuletv';
-fetch(`https://decapi.me/twitch/status/${twitchChannel}`)
-  .then(response => response.text())
-  .then(status => {
-    const liveStatus = document.getElementById("live-status");
-    if (status.includes("online")) {
-      liveStatus.innerHTML = '<span class="text-green-400">🟢 Şu anda canlı yayında!</span>';
-    } else {
-      liveStatus.innerHTML = '<span class="text-gray-400">🔴 Yayın şu anda kapalı</span>';
-    }
-  });
-document.addEventListener("keydown", e => {
-  if (e.ctrlKey && e.key === "g") {
-    alert("🎮 GameCapsuleTV seni seviyor ❤️");
-  }
-});
-</script>
+
+    document.addEventListener("keydown", e => {
+      if (e.ctrlKey && e.key === "g") {
+        alert("🎮 GameCapsuleTV seni seviyor ❤️");
+      }
+    });
+  </script>
 </head>
 <body>
   <!-- Navbar -->
@@ -100,8 +90,6 @@ document.addEventListener("keydown", e => {
     <img src="images/logo.png" alt="GameCapsuleTV Logo" class="h-10 w-10 rounded-full shadow-lg ring-2 ring-purple-600" />
     <span class="text-xl font-bold tracking-wide text-white">GameCapsuleTV</span>
   </a>
-  <div id="live-status" class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-800 text-white text-sm px-4 py-1 rounded-full shadow z-50"></div>
-  
   <div class="w-full md:w-auto flex flex-wrap justify-center md:justify-end gap-6 text-base md:text-lg font-medium tracking-wide">
     <a href="playlists.html" class="text-white hover:text-red-400 transition duration-200 transform hover:scale-110 nav-underline">YouTube</a>
     <a href="#schedule" class="text-white hover:text-purple-300 transition duration-200 transform hover:scale-110 nav-underline">Yayın Takvimi</a>
@@ -110,13 +98,11 @@ document.addEventListener("keydown", e => {
   </div>
 </nav>
 
-
 <!-- Yüklenme Ekranı -->
   <div id="preloader" class="fixed inset-0 bg-cover bg-center z-50 flex items-center justify-center flex-col gap-4" style="background-image: url('images/background.jpg');">
     <img src="images/logo.png" alt="Yükleniyor" class="w-20 h-20 animate-spin-slow rounded-full-loader">
     <h1 class="text-white text-xl animate-pulse">GameCapsuleTV yükleniyor...</h1>
   </div>
-
   
   <!-- Açılış Bölümü -->
   <section class="flex flex-col items-center justify-center h-screen text-center relative overflow-hidden" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
@@ -197,7 +183,6 @@ document.addEventListener("keydown", e => {
   </span>
 </a>
 
-
 <style>
   @keyframes bounce-slow {
     0%, 100% { transform: translateY(0); }
@@ -241,7 +226,6 @@ document.addEventListener("keydown", e => {
     </div>
   </div>
 </section>
-
 
   <!-- Hakkımda Bölümü -->
   <div id="about" class="h-32 -mt-32"></div>
