@@ -95,7 +95,7 @@ fetch(`https://decapi.me/twitch/status/${twitchChannel}`)
     <img src="images/logo.png" alt="GameCapsuleTV Logo" class="h-10 w-10 rounded-full shadow-lg ring-2 ring-purple-600" />
     <span class="text-xl font-bold tracking-wide text-white">GameCapsuleTV</span>
   </a>
-  <div id="live-status" class="ml-4 bg-gray-800 text-white text-sm px-4 py-1 rounded-full shadow inline-block"></div>
+  
   <div class="w-full md:w-auto flex flex-wrap justify-center md:justify-end gap-6 text-base md:text-lg font-medium tracking-wide">
     <a href="playlists.html" class="text-white hover:text-red-400 transition duration-200 transform hover:scale-110 nav-underline">YouTube</a>
     <a href="#schedule" class="text-white hover:text-purple-300 transition duration-200 transform hover:scale-110 nav-underline">Yayın Takvimi</a>
@@ -116,6 +116,7 @@ fetch(`https://decapi.me/twitch/status/${twitchChannel}`)
   <section class="flex flex-col items-center justify-center h-screen text-center relative overflow-hidden" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
   <div class="absolute w-full h-full bg-black opacity-60 z-0"></div>
     <div class="relative z-10">
+        <div id="live-status" class="mb-6 bg-gray-900 text-white text-sm px-4 py-2 rounded-full shadow-lg inline-block"></div>
       <h1 class="text-5xl font-extrabold mb-4" data-aos="fade-up">Merhaba, ben GameCapsuleTV!</h1>
       <p class="text-lg" data-aos="fade-up" data-aos-delay="200">Yeni çıkan tüm oyunları birlikte keşfediyoruz 🎮</p>
       <a id="scrollToYoutube" href="#" class="mt-6 inline-block bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg text-lg transition">Hemen keşfet 🎮</a>
