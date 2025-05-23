@@ -69,7 +69,7 @@
   <script>
     async function checkYouTubeStatus() {
   try {
-    const response = await fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCYQxtJWcm_AxFDtEOmtCSUg&eventType=live&type=video&key=AIzaSyD75VmULpVKm2J9aTzJhNzTH3WceAQgC-E");
+    const response = await fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCk7n9RDi7dRZltzOKAFRJ_g&eventType=live&type=video&key=AIzaSyD75VmULpVKm2J9aTzJhNzTH3WceAQgC-E");
     const data = await response.json();
     const liveBar = document.getElementById("kick-live-status");
 
