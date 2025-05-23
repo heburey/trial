@@ -86,6 +86,11 @@ fetch(`https://decapi.me/twitch/status/${twitchChannel}`)
       liveStatus.innerHTML = '<span class="text-gray-400">🔴 Yayın şu anda kapalı</span>';
     }
   });
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey && e.key === "g") {
+    alert("🎮 GameCapsuleTV seni seviyor ❤️");
+  }
+});
 </script>
 </head>
 <body>
