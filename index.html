@@ -102,7 +102,7 @@ fetch(`https://decapi.me/twitch/status/${twitchChannel}`)
     <a href="#contact" class="text-white hover:text-green-300 transition duration-200 transform hover:scale-105 nav-underline">İletişim</a>
   </div>
 </nav>
-<div id="live-status" class="text-sm text-white text-center py-2 bg-gray-800"></div>
+
 
 <!-- Yüklenme Ekranı -->
   <div id="preloader" class="fixed inset-0 bg-cover bg-center z-50 flex items-center justify-center flex-col gap-4" style="background-image: url('images/background.jpg');">
@@ -112,7 +112,8 @@ fetch(`https://decapi.me/twitch/status/${twitchChannel}`)
 
   
   <!-- Açılış Bölümü -->
-  <section class="flex flex-col items-center justify-center h-screen text-center relative overflow-hidden" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
+  $1
+      <div id="live-status" class="absolute top-6 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-sm px-4 py-2 rounded-full shadow-lg z-20"></div>
     <div class="absolute w-full h-full bg-black opacity-60 z-0"></div>
     <div class="relative z-10">
       <h1 class="text-5xl font-extrabold mb-4" data-aos="fade-up">Merhaba, ben GameCapsuleTV!</h1>
