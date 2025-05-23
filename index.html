@@ -69,7 +69,7 @@
   <script>
     async function checkKickStatus() {
       try {
-        const response = await fetch("https://kick.com/GameCapsuleTV");
+        const response = await fetch("https://corsproxy.io/?https://kick.com/GameCapsuleTV");
         const text = await response.text();
         const isLive = text.includes('LIVE NOW');
         const liveBar = document.getElementById("kick-live-status");
@@ -81,7 +81,7 @@
         }
       } catch (err) {
         console.error("Kick durumu alınamadı", err);
-        document.getElementById("kick-live-status").innerHTML = '🎮 Yayın durumu: <span class="text-red-400 font-semibold">Durum alınamadı</span>';
+        document.getElementById("kick-live-status").innerHTML = '🎮 Yayın durumu: <span class="text-gray-400 font-semibold">⚫ Yayın şu anda kapalı</span>';
       }
     }
     checkKickStatus();
