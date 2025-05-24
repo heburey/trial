@@ -374,9 +374,9 @@
   </div>
 </div>
 
-<canvas id="starsCanvas" class="fixed top-0 left-0 w-full h-full z-40 pointer-events-none"></canvas>
+<canvas id="meteorsCanvas" class="fixed top-0 left-0 w-full h-full z-40 pointer-events-none hidden"></canvas>
 <script>
-  const canvas = document.getElementById('starsCanvas');
+  const canvas = document.getElementById('meteorsCanvas');
   const ctx = canvas.getContext('2d');
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
@@ -386,27 +386,44 @@
     height = canvas.height = window.innerHeight;
   });
 
-  const stars = Array.from({ length: 100 }, () => ({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    size: Math.random() * 1.5 + 0.5,
-    speed: Math.random() * 0.5 + 0.2
-  }));
-
-  function drawStars() {
-    ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-    stars.forEach(star => {
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-      ctx.fill();
-      star.y += star.speed;
-      if (star.y > height) star.y = 0;
-    });
-    requestAnimationFrame(drawStars);
+  let meteors = [];
+  function createMeteors() {
+    meteors = Array.from({ length: 25 }, () => ({
+      x: Math.random() * width + width * 0.25,
+      y: Math.random() * -height,
+      size: Math.random() * 2 + 1,
+      speedX: -2,
+      speedY: 4
+    }));
   }
 
-  drawStars();
+  function drawMeteors() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    meteors.forEach(meteor => {
+      ctx.beginPath();
+      ctx.arc(meteor.x, meteor.y, meteor.size, 0, Math.PI * 2);
+      ctx.fill();
+      meteor.x += meteor.speedX;
+      meteor.y += meteor.speedY;
+      if (meteor.y > height || meteor.x < 0) {
+        meteor.x = Math.random() * width + width * 0.25;
+        meteor.y = Math.random() * -height;
+      }
+    });
+    requestAnimationFrame(drawMeteors);
+  }
+
+  document.getElementById("confettiBtn").addEventListener("click", () => {
+    const meteorCanvas = document.getElementById("meteorsCanvas");
+    meteorCanvas.classList.remove("hidden");
+    createMeteors();
+    drawMeteors();
+  });
+
+  document.querySelector("#surpriseModal button").addEventListener("click", () => {
+    document.getElementById("meteorsCanvas").classList.add("hidden");
+  });
 </script>
 </body>
 </html>
