@@ -372,10 +372,6 @@
   const index = Math.floor(Math.random() * finalSet.length);
   window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
 }
-        if (!window.lastSuggestion[key]) {
-      const index = Math.floor(Math.random() * finalSet.length);
-      window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
-    }
     
     const suggestion = window.lastSuggestion[key];
     document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic' id='gameDescription'></span>`;
@@ -653,6 +649,43 @@ if (descriptions[suggestion]) {
   document.querySelector("#surpriseModal button").addEventListener("click", () => {
     document.getElementById("meteorsCanvas").classList.add("hidden");
   });
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("q1") && params.has("q2") && params.has("q3") && params.has("q4") && params.has("q5")) {
+      const answers = {
+        q1: params.get("q1"),
+        q2: params.get("q2"),
+        q3: params.get("q3"),
+        q4: params.get("q4"),
+        q5: params.get("q5")
+      };
+
+      const selected = [
+        ...(quizAnswers[answers.q1] || []),
+        ...(quizAnswers[answers.q2] || []),
+        ...(quizAnswers[answers.q3] || []),
+        ...(quizAnswers[answers.q4] || []),
+        ...(quizAnswers[answers.q5] || [])
+      ];
+
+      const finalSet = [...new Set(selected)];
+      const key = JSON.stringify(answers);
+
+      if (!window.lastSuggestion) window.lastSuggestion = {};
+      if (!window.lastSuggestion[key]) {
+        const index = Math.floor(Math.random() * finalSet.length);
+        window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
+      }
+
+      const suggestion = window.lastSuggestion[key];
+      document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic' id='gameDescription'></span>`;
+      if (descriptions[suggestion]) {
+        document.getElementById("gameDescription").textContent = descriptions[suggestion];
+      }
+    }
+  });
+</script>
 </script>
 </body>
 </html>
