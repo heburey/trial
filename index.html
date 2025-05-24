@@ -346,102 +346,46 @@
 };
 
   document.getElementById("gameQuiz").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const answers = {
-      q1: e.target.q1.value,
-      q2: e.target.q2.value,
-      q3: e.target.q3.value,
-      q4: e.target.q4.value,
-      q5: e.target.q5.value
-    };
+  e.preventDefault();
+  const answers = {
+    q1: e.target.q1.value,
+    q2: e.target.q2.value,
+    q3: e.target.q3.value,
+    q4: e.target.q4.value,
+    q5: e.target.q5.value
+  };
 
-    const selected = [
-  ...quizAnswers[answers.q1] || [],
-  ...quizAnswers[answers.q2] || [],
-  ...quizAnswers[answers.q3] || [],
-  ...quizAnswers[answers.q4] || [],
-  ...quizAnswers[answers.q5] || []
-];
+  const selected = [
+    ...(quizAnswers[answers.q1] || []),
+    ...(quizAnswers[answers.q2] || []),
+    ...(quizAnswers[answers.q3] || []),
+    ...(quizAnswers[answers.q4] || []),
+    ...(quizAnswers[answers.q5] || [])
+  ];
 
-    const finalSet = [...new Set(selected)];
-    const key = JSON.stringify(answers);
-    if (!window.lastSuggestion) {
-      window.lastSuggestion = {};
-    }
-    if (!window.lastSuggestion[key]) {
-  const index = Math.floor(Math.random() * finalSet.length);
-  window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
-}
-    
-    const suggestion = window.lastSuggestion[key];
-    document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic' id='gameDescription'></span>`;
+  const finalSet = [...new Set(selected)];
+  const key = JSON.stringify(answers);
+  if (!window.lastSuggestion) window.lastSuggestion = {};
+  if (!window.lastSuggestion[key]) {
+    const index = Math.floor(Math.random() * finalSet.length);
+    window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
+  }
 
-const descriptions = {
-  "Outer Wilds": "Zamanda döngüye takılmış bir gezgin olarak evrenin gizemlerini keşfetmeye çalışıyorsun.",
-  "Stardew Valley": "Bir çiftlik kurup köy hayatını keşfederken huzur bulacağın bir simülasyon.",
-  "Hollow Knight": "Sessiz bir kahramanla yeraltında kayıp bir krallığın sırlarını çözüyorsun.",
-  "Life is Strange": "Zamanı geri alabilen bir genç olarak hayat değiştiren kararlar alıyorsun.",
-  "Celeste": "Bir dağı tırmanırken içsel yolculuğunu da keşfetmeye başlıyorsun.",
-  "Spiritfarer": "Ölen ruhlara veda ettiren duygusal ve sıcak bir gemi macerası.",
-  "Gris": "Sanatsal bir dünyada kaybın evreleriyle yüzleşiyorsun.",
-  "DOOM Eternal": "Cehennemi yok ederken hız ve güç hissinin zirvesini yaşıyorsun.",
-  "Dead Cells": "Zorlu ama ödüllendirici bir roguelike aksiyon-platform deneyimi.",
-  "Firewatch": "Ormanda yalnız bir gözcü olarak gizemli olayları araştırıyorsun.",
-  "Cuphead": "Eski çizgi filmler stilinde zorlu boss savaşlarına katılıyorsun.",
-  "Slay the Spire": "Kartlarla kuleyi fethetmeye çalıştığın bir strateji roguelike.",
-  "Katana ZERO": "Hızlı tempolu, stilize ve gizem dolu bir dövüş oyunu.",
-  "Tunic": "Sevimli bir tilki olarak gizemli bir dilde dünyayı keşfediyorsun.",
-  "Oxenfree": "Bir grup genç doğaüstü olaylara karışıyor. Diyaloglar çok güçlü.",
-  "INSIDE": "Atmosferik bir distopyada sessizce kaçmaya çalışıyorsun.",
-  "The Messenger": "Zamanda yolculuk yapan bir ninjanın platform macerası.",
-  "Ori and the Blind Forest": "Büyüleyici görsellerle dolu, zorlu ama duygusal bir platform oyunu.",
-  "Subnautica": "Yabancı bir okyanus gezegeninde hayatta kalmaya çalışıyorsun.",
-  "Eastshade": "Sanat yaparak dünyayı keşfettiğin dövüşsüz bir macera.",
-  "Superliminal": "Perspektifle oynayarak çözülen optik illüzyon bulmacaları.",
-  "Loop Hero": "Sonsuz bir döngüde stratejik yapılandırmalarla ilerliyorsun.",
-  "Unpacking": "Kutulardan eşya çıkarırken karakterin geçmişini keşfediyorsun.",
-  "Eastward": "Renkli ama karanlık bir dünyada yolculuk ve dostluk hikâyesi.",
-  "Dredge": "Balıkçılık yaparken okyanusun gizemli sırlarıyla yüzleşiyorsun.",
-  "A Short Hike": "Dağa tırmanırken küçük keşifler ve sohbetlerle rahatlıyorsun.",
-  "Raji: An Ancient Epic": "Hint mitolojisinde kardeşini kurtarmaya çalışan cesur bir kız.",
-  "Sifu": "Her dövüşte yaşlandığın ama tecrübe kazandığın bir kung-fu oyunu.",
-  "Neon Abyss": "Roguelike tarzı hızlı, neon renkli ve eğlenceli bir shooter.",
-  "Hi-Fi Rush": "Müzikle uyumlu dövüşlerin olduğu ritmik bir aksiyon-platform.",
-  "Among Us": "Mürettebat arasında hainleri bulmaya çalıştığın sosyal bir oyun.",
-  "Overcooked 2": "Zamanla yarışarak kaotik mutfaklarda birlikte yemek yapıyorsun.",
-  "Fall Guys": "Renkli engelli parkurlarda onlarca kişiyle yarışıyorsun.",
-  "Portal 2": "Zeka gerektiren portallar açarak odaları geçiyorsun.",
-  "Valorant": "Karakter yetenekleri ve nişancılığı birleştiren takım tabanlı FPS.",
-  "CS2": "Efsanevi nişancı oyunu Counter-Strike'ın en güncel hali.",
-  "The Witcher 3": "Geralt olarak canavar avlıyor, aşk yaşıyor ve savaşlara katılıyorsun.",
-  "Skyrim": "Ejderhalar, büyüler ve özgürlükle dolu bir açık dünya RPG.",
-  "Persona 5": "Çift yaşamlı lise öğrencileri olarak kalpleri çalıyorsun.",
-  "Sekiro: Shadows Die Twice": "Japon mitolojisinde geçen refleks bazlı zorlu bir aksiyon oyunu.",
-  "To the Moon": "Ölmek üzere olan bir adamın anılarına girip hayalini gerçekleştiriyorsun.",
-  "Ender Lilies": "Gotik atmosferde geçen duygusal ve sert metroidvania oyunu.",
-  "Journey": "Adını bilmediğin biriyle sessiz ama anlamlı bir yolculuk.",
-  "Undertale": "Savaşmak zorunda olmadığın, kararlarının önemli olduğu bir RPG.",
-  "Inside": "Karanlık ve gizemli bir dünyanın derinliklerine sessizce ilerliyorsun.",
-  "Detroit: Become Human": "Androidlerin toplumda yer edinmeye çalıştığı dramatik hikâye.",
-  "Control": "Garip bir devlet binasında doğaüstü güçlerle savaşırken sırları açığa çıkarıyorsun.",
-  "Moonlighter": "Gündüz dükkan işle, gece zindanlarda savaş. Hem ticaret hem macera.",
-  "Cult of the Lamb": "Sevimli ama karanlık bir dünyada kendi tarikatını kuruyorsun.",
-  "Blasphemous": "Günah, kefaret ve gotik ögelerle örülü sert bir platformer.",
-  "Returnal": "Bir gezegende tekrar tekrar ölerek gizemleri çözmeye çalışıyorsun.",
-  "Bioshock Infinite": "Uçan şehir Columbia’da geçirdiğin felsefi ve aksiyon dolu bir serüven.",
-  "Mass Effect 2": "Galaksiyi kurtarmak için sadık bir ekip kur ve intihar görevine hazırlan.",
-  "The Last of Us": "Bir zombi kıyametinde geçen duygusal ve tehlikeli bir yolculuk.",
-  "God of War (2018)": "Kratos’un oğluyla birlikte İskandinav mitolojisinde çıktığı baba-oğul hikayesi.",
-  "Red Dead Redemption 2": "Vahşi Batı’da geçen dramatik ve geniş bir açık dünya macerası.",
-  "Alan Wake 2": "Gerçeklik ve hikaye iç içe geçerken karanlıkla savaşan bir yazar.",
-  "Control": "Garip bir federal binada geçen, telekinetik güçlerle dolu bir aksiyon.",
-  "Payday 2": "Arkadaşlarınla birlikte banka soyduğun taktiksel FPS oyunu."
-};
+  const suggestion = window.lastSuggestion[key];
+  document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic' id='gameDescription'></span>`;
 
-if (descriptions[suggestion]) {
-  document.getElementById("gameDescription").textContent = descriptions[suggestion];
-}
-  });
+  const descriptions = {
+    "Outer Wilds": "Zamanda döngüye takılmış bir gezgin olarak evrenin gizemlerini keşfetmeye çalışıyorsun.",
+    "Stardew Valley": "Bir çiftlik kurup köy hayatını keşfederken huzur bulacağın bir simülasyon.",
+    "Hollow Knight": "Sessiz bir kahramanla yeraltında kayıp bir krallığın sırlarını çözüyorsun.",
+    "Life is Strange": "Zamanı geri alabilen bir genç olarak hayat değiştiren kararlar alıyorsun.",
+    "Celeste": "Bir dağı tırmanırken içsel yolculuğunu da keşfetmeye başlıyorsun."
+  };
+
+  if (descriptions[suggestion]) {
+    document.getElementById("gameDescription").textContent = descriptions[suggestion];
+  }
+});
 </script>
 
 <script>
