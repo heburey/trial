@@ -1,278 +1,293 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>GameCapsuleTV</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="images/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameCapsuleTV</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     body {
       background-color: #0f0f0f;
       color: white;
-      font-family: 'Rubik', sans-serif;
+      font-family: 'Rubik', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #preloader {
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+    #preloader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .platform-card iframe {
+      width: 100%;
+      height: 200px;
+      border-radius: 0.5rem;
+    }
+    @keyframes spin-slow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+      animation: spin-slow 3s linear infinite;
+    }
+    .rounded-full-loader {
+      border-radius: 9999px;
+    }
+    #countdown {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 1px;
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 8px rgba(255, 200, 100, 0.2); }
+      50% { box-shadow: 0 0 16px rgba(255, 200, 100, 0.5); }
+    }
+    .glow-hover:hover {
+      animation: glow 1.5s infinite;
     }
     .nav-underline {
-    position: relative;
-  }
-  .nav-underline::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0%;
-    height: 2px;
-    background-color: currentColor;
-    transition: width 0.3s ease;
-  }
-  .nav-underline:hover::after {
-    width: 100%;
-  }
-</style>
+      position: relative;
+    }
+    .nav-underline::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 2px;
+      background-color: currentColor;
+      transition: width 0.3s ease;
+    }
+    .nav-underline:hover::after {
+      width: 100%;
+    }
+  </style>
+  <script>
+    window.addEventListener("load", () => {
+      const loader = document.querySelector("#preloader");
+      if (loader) {
+        setTimeout(() => {
+          loader.classList.add("hidden");
+        }, 600);
+      }
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.ctrlKey && e.key === "g") {
+        alert("🎮 GameCapsuleTV seni seviyor ❤️");
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- Sürpriz Butonu (Tüm cihazlar için) -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="confettiBtn" class="bg-gradient-to-br from-rose-600 via-fuchsia-600 to-indigo-600 hover:brightness-110 text-white px-6 py-3 rounded-full shadow-2xl font-semibold text-lg transition-transform duration-300 transform hover:scale-110 focus:outline-none animate__animated animate__pulse animate__infinite">
+  👉 Dokun
+</button>
+  </div>
+
+  <!-- Confetti Kütüphanesi -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <!-- Confetti ve Sürpriz Mesaj Scripti -->
+  <script>
+    const btn = document.getElementById("confettiBtn");
+    btn.addEventListener("click", () => {
+      const duration = 1500;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 180, ticks: 100, zIndex: 2000 };
+
+      const interval = setInterval(() => {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, {
+          particleCount,
+          origin: {
+          x: 0.5,
+          y: 0.5
+        },
+        scalar: 1.2,
+        shapes: ['circle'],
+        colors: ['#ff4ecd', '#8b5cf6', '#38bdf8', '#facc15']
+        }));
+      }, 250);
+
+      setTimeout(() => {
+  document.getElementById("surpriseModal").classList.remove("hidden");
+}, 300);
+    });
+  </script>
+      
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="flex justify-between items-center px-6 py-4 bg-gradient-to-r from-gray-900 via-black to-gray-900 shadow-md sticky top-0 z-50 border-b border-gray-800">
-    <a href="index.html" class="flex items-center space-x-3">
+<nav class="relative flex flex-wrap md:flex-nowrap items-center justify-between px-6 py-4 bg-gradient-to-r from-gray-900 via-black to-gray-900 shadow-md sticky top-0 z-50 border-b border-gray-800">
+  <a href="index.html" class="flex items-center space-x-3 mb-2 md:mb-0">
   <img src="images/logo.png" alt="GameCapsuleTV Logo" class="h-10 w-10 rounded-full shadow-lg ring-2 ring-purple-600" />
   <span class="text-xl font-bold tracking-wide text-white">GameCapsuleTV</span>
 </a>
-    <div class="space-x-4 text-base md:text-lg font-medium">
-      <a href="playlists.html" class="text-white hover:text-red-400 transition duration-200 transform duration-200 hover:scale-110 nav-underline">YouTube</a>
-      <a href="index.html#schedule" class="text-white hover:text-purple-300 transition duration-200 transform duration-200 hover:scale-105 nav-underline">Yayın Takvimi</a>
-      <a href="index.html#about" class="text-white hover:text-yellow-300 transition duration-200 transform duration-200 hover:scale-105 nav-underline">Hakkımda</a>
-      <a href="index.html#contact" class="text-white hover:text-green-300 transition duration-200 transform duration-200 hover:scale-105 nav-underline">İletişim</a>
-    </div>
-  </nav>
+  <div class="w-full md:w-auto flex flex-wrap justify-center md:justify-end gap-6 text-base md:text-lg font-medium tracking-wide">
+    <a href="playlists.html" class="text-white hover:text-red-400 transition duration-200 transform hover:scale-110 nav-underline">YouTube</a>
+    <a href="#schedule" class="text-white hover:text-purple-300 transition duration-200 transform hover:scale-110 nav-underline">Yayın Takvimi</a>
+    <a href="#about" class="text-white hover:text-yellow-300 transition duration-200 transform hover:scale-105 nav-underline">Hakkımda</a>
+    <a href="#contact" class="text-white hover:text-green-300 transition duration-200 transform hover:scale-105 nav-underline">İletişim</a>
+  </div>
+</nav>
 
-  <!-- Başlık -->
-  <section class="p-8">
-    <h1 class="text-3xl font-bold mb-6 text-center">🎬 GameCapsuleTV Oynatma Listeleri</h1>
+<!-- Yüklenme Ekranı -->
+  <div id="preloader" class="fixed inset-0 bg-cover bg-center z-50 flex items-center justify-center flex-col gap-4" style="background-image: url('images/background.jpg');">
+    <img src="images/logo.png" alt="Yükleniyor" class="w-20 h-20 animate-spin-slow rounded-full-loader">
+    <h1 class="text-white text-xl animate-pulse">GameCapsuleTV yükleniyor...</h1>
+  </div>
+  
+  <!-- Açılış Bölümü -->
+  <section class="flex flex-col items-center justify-center h-screen text-center relative overflow-hidden" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
+  <div class="absolute w-full h-full bg-black opacity-60 z-0"></div>
+    <div class="relative z-10">
+        
+      <h1 class="text-5xl font-extrabold mb-4" data-aos="fade-up">Merhaba, ben GameCapsuleTV!</h1>
+      <p class="text-lg" data-aos="fade-up" data-aos-delay="200">Yeni çıkan tüm oyunları birlikte keşfediyoruz 🎮</p>
+      <a id="scrollToYoutube" href="#" class="mt-6 inline-block bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg text-lg transition">Hemen keşfet 🎮</a>
+    </div>
+  </section>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PfOQdUKgGUfoJr4CfdngySd" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/RGRUF7QEyBk/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">Mandragora</h2>
+  <!-- YouTube Bölümü -->
+  <section id="youtube" class="p-8" data-aos="zoom-in-up">
+    <h2 class="text-3xl font-bold mb-4">YouTube</h2>
+    <div class="platform-card bg-gray-800 p-4 rounded-lg shadow-md">
+      <div class="w-full max-w-5xl mx-auto">
+        <iframe style="width: 100%; height: 400px; border-radius: 12px;"
+          src="https://www.youtube.com/embed/NnXsFPZHqHU"
+          title="YILIN OYUNU MU? | Split Fiction İnceleme | Nasıl Oyun? #5 (SPOILERSIZ)"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pc8BbGG1S4ImtUxSfbl_MJc" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/vW8VveU_ZRM/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">Clair Obscur</h2>
+  </section>
+
+  <!-- Yayın Takvimi ve Sayaç Bölümü -->
+<section id="schedule" class="p-8" data-aos="zoom-in">
+  <h2 class="text-3xl font-bold mb-4 text-white text-center">Haftalık Yayın Takvimi</h2>
+  <div class="flex justify-center mb-12">
+    <img src="images/weekly-schedule.jpeg" alt="Haftalık Yayın Takvimi" class="rounded-lg shadow-lg max-w-full h-auto" />
+  </div>
+
+  <!-- Sayaç ve Takvim Butonu -->
+  <div class="relative max-w-5xl mx-auto mt-14 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)]" data-aos="zoom-in-up">
+    <img src="images/rdr2.jpg" alt="RDR2 Arka Plan" class="absolute inset-0 w-full h-full object-cover z-0 scale-105" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200" />
+    <div class="absolute inset-0 bg-black bg-opacity-60 z-10 backdrop-blur-sm" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200"></div>
+    <div class="relative z-20 px-12 py-20 text-center" data-aos="zoom-in-up" data-aos-delay="300">
+      <div id="countdown" class="text-6xl md:text-7xl font-extrabold text-white tracking-wider drop-shadow-xl py-6 px-10 rounded-2xl inline-block mb-6"></div>
+      <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">Atına atla, macera başlıyor!</h2>
+      <div class="mt-8">
+    <style>
+  .btn-liquid-fill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #a41e22;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+  }
+  .btn-liquid-fill:hover::before {
+    transform: scaleX(1);
+  }
+  .btn-liquid-fill > span {
+    position: relative;
+    z-index: 10;
+  }
+</style>
+
+<a 
+  href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ASUMMARY:GameCapsuleTV%20RDR2%20Yay%C4%B1n%C4%B1%0ADESCRIPTION:RDR2%20yay%C4%B1n%C4%B1%20ba%C5%9Fl%C4%B1yor!%20Kat%C4%B1lmak%20i%C3%A7in%20twitch.tv/gamecapsuletv%0ADTSTART:20250525T190000Z%0ADTEND:20250526T010000Z%0ALOCATION:https://twitch.tv/gamecapsuletv%0AEND:VEVENT%0AEND:VCALENDAR"
+  download="rdr2-yayin.ics"
+  class="btn-liquid-fill glow-hover relative inline-flex items-center gap-2 px-7 py-3 text-white text-lg font-semibold rounded-full overflow-hidden border-2 border-[#d88c64] shadow-xl transform transition duration-300 hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-yellow-500/50"
+>
+  <span class="relative z-10 flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 animate-bounce-slow transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+    </svg>
+    Takvime Ekle
+  </span>
+</a>
+
+<style>
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  .animate-bounce-slow {
+    animation: bounce-slow 2s infinite;
+  }
+  .btn-liquid-fill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(110, 20, 20, 0.75), rgba(140, 30, 30, 0.75), rgba(180, 40, 40, 0.75));
+    background-size: 300% 300%;
+    animation: liquid-flow 6s ease infinite;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+    border-radius: inherit;
+    filter: brightness(0.9) contrast(1.2);
+    backdrop-filter: blur(1px);
+  }
+  .btn-liquid-fill:hover::before {
+    transform: scaleX(1);
+  }
+  .btn-liquid-fill > span {
+    position: relative;
+    z-index: 10;
+  }
+  @keyframes liquid-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
+      </div>
     </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PcRjM3s988dK9c3PPURgbes" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/qiUPV4GNHyA/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">South of Midnight</h2>
-    </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PcRiQOaS07ckRCayVWQ3-h4" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/FtBDpRpeTmo/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">The Last of Us Part II</h2>
-    </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PdtRZGByWaPnj1HtewRSQrx" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/KZW8H1jeZXc/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">The First Berserker Khazan</h2>
-    </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PegNDgxnkdCly2LglNGMJFs" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/JBKpRetUcOQ/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">Atomfall</h2>
-    </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pf81RuWjE8-9UL9gel1tqNd" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/aPMoTjUmy9E/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">Dome Keeper</h2>
-    </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PdK9I9hiDIa3343p0CXUFDa" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/08CxDL23nMM/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">Kingdom Come Deliverance II</h2>
-    </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pf4ZyHQ_svq9j9bVYmBDGeS" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/TBXrEiZrj6s/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">Assasin's Creed Shadows</h2>
-    </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pf77h-B2dR45F_Jlg3jg1TR" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/AEBvY2tKm0w/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">Wanderstop</h2>
-    </div>
-  </a>
-  <a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pe1eqJFB7ALg1LW1wvQOCxg" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-    <img src="https://img.youtube.com/vi/XvBAUFiwb5s/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-purple-300">Split Fiction</h2>
-    </div>
-  </a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PcAtl9JGAv4_zg3mgXhfoYl" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/SUAu0Si6FSY/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Breathedge</h2>
   </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PdMyz0aDjm-00RMQRGY5Evq" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/-_KZtDvjl8o/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Steam Next Fest Demoları 2025</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pdlhfx7P738iAX76zjNKuUg" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/WbMLhDQIVR4/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Contraband Police</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PdNsqFbr66yZ0_Om3VLxK7O" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/UcgjdFcF15Y/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Turmoil</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PdYVaDkv0Ku8P40FQ50fIEa" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/N07y_AOhXis/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Oyun Tadımı</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PcnTMNVv3bfTwdktEGOmbQZ" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/b6EFCK2XhuI/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">The Walking Dead 400 Days + Season 2</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PfQsliri3BmlQVj1WiqsCCR" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/NnXsFPZHqHU/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Nasıl Oyun?</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PeweX1MTS1WeAiTfI9irOGt" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/5CYDuTcMNek/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Oyun Radarım</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PfL48dnhrS-N7dgmqOZq6eP" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/6ZZOHqnZTrY/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Pizza Tower</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PeA5QxJeKKmVyUWcRrdoENH" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/Dafdf4EgRug/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Webbed</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PerQ-I3r_qMx8TysSPmih14" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/g0XjDvnHB1w/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Resident Evil 2</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PcSH8vSuciSG8CzokmuA3Qf" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/o0fJhQfhpMc/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Call of Duty: Black Ops 6</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PfPaUNkPfYXgEHoQn28mfNV" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/hro474TtzRc/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Wolfenstein: New Order</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PfMM7AppTOGvh5LHiKa7FC5" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/j_opxWyM_bI/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Silent Hill 2 Remake</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pda5z5Fdxy3OutBV_OHGbzI" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/m0o-Q84uDDE/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Pico Park 2</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pd_782BNoIwY3KxF00A274U" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/v5Oh11TE8Rg/hqdefault.jpg" alt="Playlist" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Gas Station Simulator</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PeEnxl8C1YHBSDutS_Zpq6t" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/CxIYpxf7s0Q/hqdefault.jpg" alt="Black Myth: Wukong" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Black Myth: Wukong</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4Pc2d0DOO7D7LfhIqHYKf7tC" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/SJKd9palJXw/hqdefault.jpg" alt="The Vanishing of Ethan Carter" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">The Vanishing of Ethan Carter</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PdAiqfqGkKfnrM5SAhInK47" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/qlLohBzn7HI/hqdefault.jpg" alt="To the Moon" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">To the Moon</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PecvaBnsVwLycDjbGTOsKd4" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/mQkAyEtAyAg/hqdefault.jpg" alt="Resident Evil 7: Biohazard" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Resident Evil 7: Biohazard</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PcgaE_OS8Lv6ncK7_vo002g" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/sHnggYcMcfY/hqdefault.jpg" alt="Journey of the Savage Planet" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Journey of the Savage Planet</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PdKk1OCzMErFd0WUaOZFL2t" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/pxT4L6zgwUM/hqdefault.jpg" alt="Call of Duty: Modern Warfare 3" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Call of Duty: Modern Warfare 3</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PfXeGCLrU-f3ww2vH3XA64s" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/RRfPhmDODSk/hqdefault.jpg" alt="Mafia II Definitive Edition" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Mafia II Definitive Edition</h2>
-  </div>
-</a>
-<a href="https://www.youtube.com/playlist?list=PLBJSLBmtg4PdkVs1aPmt25Mea1r0pXb0m" target="_blank" class="bg-gray-800 rounded-xl shadow hover:shadow-lg transition overflow-hidden">
-  <img src="https://img.youtube.com/vi/nw57iBI7lO4/hqdefault.jpg" alt="Lies of P" class="w-full h-48 object-cover">
-  <div class="p-4">
-    <h2 class="text-lg font-semibold text-purple-300">Lies of P</h2>
-  </div>
-</a>
-</div>
 </section>
 
-  <!-- Ana sayfaya dön butonu -->
-  <div class="flex justify-center mb-10">
-    <a href="index.html" class="flex items-center gap-2 bg-purple-700 hover:bg-purple-800 text-white px-5 py-3 rounded-full text-lg font-medium shadow hover:shadow-lg transition">
-      <i class="ph ph-house-simple text-2xl"></i>
-      Ana Sayfa
-    </a>
-  </div>
+  <!-- Hakkımda Bölümü -->
+  <div id="about" class="h-32 -mt-32"></div>
+  <section class="p-8 scroll-mt-24" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-6">Hakkımda</h2>
+    <div class="flex flex-col md:flex-row items-start gap-6">
+      <img src="images/profile.jpg" alt="Cenk Fotoğrafı" class="w-48 h-48 object-cover rounded-xl shadow-md" />
+      <p class="text-lg">
+        Merhaba!<br><br>
+        Ben Cenk, 30 yaşındayım. Oyun oynamayı sadece bir hobi olarak değil, bir yaşam biçimi olarak görüyorum. GameCapsuleTV, sadece bir Twitch kanalı ya da YouTube sayfası değil; benim çocukluk hayallerimin dijital dünyaya yansıması.<br><br>
+        Kanalımda neredeyse tüm yeni çıkan oyunları deneyimliyorum. AAA yapımlardan bağımsız projelere, retro klasiklerden güncel sürprizlere kadar geniş bir yelpazem var. Amacım yalnızca oyun oynamak değil; izleyicilerle gerçek bir bağ kurmak, birlikte gülmek, heyecanlanmak, bazen de sinirlenmek... Çünkü işin doğası bu.<br><br>
+        Zamanla sadece yayın açmakla kalmadım; içerik üretmenin, bir topluluk oluşturmanın ve insanlara dokunmanın ne kadar değerli olduğunu gördüm. Bu site de bu yüzden var: beni daha yakından tanıman için.<br><br>
+        Hoş geldin. Artık sen de bu kapsülün bir parçasısın.
+      </p>
+    </div>
+  </section>
 
-  <!-- Sosyal Medya ve İletişim -->
-  <section class="p-8 bg-gray-900 border-t border-gray-700">
+  <!-- İletişim ve Sosyal Medya -->
+  <section id="contact" class="p-8" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-6">Sosyal Medya ve İletişim</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div class="flex flex-col gap-4">
@@ -308,6 +323,38 @@
     </div>
   </section>
 
+  <!-- AOS ve Scroll Scriptleri -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    document.addEventListener("DOMContentLoaded", function () {
+      const scrollBtn = document.getElementById("scrollToYoutube");
+      const target = document.getElementById("youtube");
+      if (scrollBtn && target) {
+        scrollBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    });
+    const countdownTarget = new Date("2025-05-25T22:00:00+03:00").getTime();
+    const countdownElement = document.getElementById("countdown");
+    const countdownInterval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownTarget - now;
+      if (distance <= 0) {
+        clearInterval(countdownInterval);
+        countdownElement.innerHTML = "🎮 Yayın başladı!";
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdownElement.innerHTML = `${days}g ${hours}s ${minutes}d ${seconds}sn`;
+    }, 1000);
+  </script>
+
   <!-- Footer -->
   <footer class="bg-gray-900 text-center text-white py-6 mt-8">
     <div class="mb-2">
@@ -315,5 +362,73 @@
     </div>
     <p class="text-sm">© 2025 GameCapsuleTV – Tüm hakları saklıdır.</p>
   </footer>
+<!-- Sürpriz Modal -->
+<div id="surpriseModal" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 backdrop-blur-md">
+  <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl px-8 py-10 max-w-xl w-full shadow-2xl border border-purple-500 text-center animate__animated animate__fadeInUp">
+    <h2 class="text-4xl font-extrabold mb-6 text-white text-center">
+  Burası Seninle Daha Güzel!
+</h2>
+    <p class="text-lg text-gray-300 leading-relaxed mb-8">
+  Seninle burada olmak çok güzel. Bu kapsülde sadece oyunlar değil, birlikte geçireceğimiz kahkahalar, heyecanlar ve anılar var. Hoş geldin, artık burası senin de evin. 💜🎮
+</p>
+    <button onclick="document.getElementById('surpriseModal').classList.add('hidden')" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300">
+      🚀 Kapat
+    </button>
+  </div>
+</div>
+
+<canvas id="meteorsCanvas" class="fixed top-0 left-0 w-full h-full z-40 pointer-events-none hidden"></canvas>
+<script>
+  const canvas = document.getElementById('meteorsCanvas');
+  const ctx = canvas.getContext('2d');
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  let meteors = [];
+  function createMeteors() {
+    meteors = Array.from({ length: 25 }, () => ({
+      x: Math.random() * width + width * 0.25,
+      y: Math.random() * -height,
+      size: Math.random() * 2 + 1,
+      speedX: -2,
+      speedY: 4
+    }));
+  }
+
+  function drawMeteors() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.lineWidth = 1.5;
+    meteors.forEach(meteor => {
+      ctx.beginPath();
+      ctx.moveTo(meteor.x, meteor.y);
+      ctx.lineTo(meteor.x - meteor.speedX * 5, meteor.y - meteor.speedY * 5);
+      ctx.stroke();
+      meteor.x += meteor.speedX;
+      meteor.y += meteor.speedY;
+      if (meteor.y > height || meteor.x < 0) {
+        meteor.x = Math.random() * width + width * 0.25;
+        meteor.y = Math.random() * -height;
+      }
+    });
+    requestAnimationFrame(drawMeteors);
+  }
+
+  document.getElementById("confettiBtn").addEventListener("click", () => {
+    const meteorCanvas = document.getElementById("meteorsCanvas");
+    meteorCanvas.classList.remove("hidden");
+    createMeteors();
+    drawMeteors();
+  });
+
+  document.querySelector("#surpriseModal button").addEventListener("click", () => {
+    document.getElementById("meteorsCanvas").classList.add("hidden");
+  });
+</script>
 </body>
 </html>
