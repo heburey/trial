@@ -84,17 +84,17 @@
   </script>
 </head>
 <body>
-
+  <!-- Sürpriz Butonu (Tüm cihazlar için) -->
   <div class="fixed bottom-6 right-6 z-50">
     <button id="confettiBtn" class="bg-gradient-to-br from-rose-600 via-fuchsia-600 to-indigo-600 hover:brightness-110 text-white px-6 py-3 rounded-full shadow-2xl font-semibold text-lg transition-transform duration-300 transform hover:scale-110 focus:outline-none animate__animated animate__pulse animate__infinite">
   👉 Dokun
 </button>
   </div>
 
-
+  <!-- Confetti Kütüphanesi -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-
+  <!-- Confetti ve Sürpriz Mesaj Scripti -->
   <script>
     const btn = document.getElementById("confettiBtn");
     btn.addEventListener("click", () => {
@@ -127,7 +127,7 @@
       
 </head>
 <body>
-
+  <!-- Navbar -->
 <nav class="relative flex flex-wrap md:flex-nowrap items-center justify-between px-6 py-4 bg-gradient-to-r from-gray-900 via-black to-gray-900 shadow-md sticky top-0 z-50 border-b border-gray-800">
   <a href="index.html" class="flex items-center space-x-3 mb-2 md:mb-0">
   <img src="images/logo.png" alt="GameCapsuleTV Logo" class="h-10 w-10 rounded-full shadow-lg ring-2 ring-purple-600" />
@@ -141,13 +141,13 @@
   </div>
 </nav>
 
-
+<!-- Yüklenme Ekranı -->
   <div id="preloader" class="fixed inset-0 bg-cover bg-center z-50 flex items-center justify-center flex-col gap-4" style="background-image: url('images/background.jpg');">
     <img src="images/logo.png" alt="Yükleniyor" class="w-20 h-20 animate-spin-slow rounded-full-loader">
     <h1 class="text-white text-xl animate-pulse">GameCapsuleTV yükleniyor...</h1>
   </div>
   
-
+  <!-- Açılış Bölümü -->
   <section class="flex flex-col items-center justify-center h-screen text-center relative overflow-hidden" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
   <div class="absolute w-full h-full bg-black opacity-60 z-0"></div>
     <div class="relative z-10">
@@ -158,7 +158,7 @@
     </div>
   </section>
 
-
+  <!-- YouTube Bölümü -->
   <section id="youtube" class="p-8" data-aos="zoom-in-up">
     <h2 class="text-3xl font-bold mb-4">YouTube</h2>
     <div class="platform-card bg-gray-800 p-4 rounded-lg shadow-md">
@@ -175,14 +175,14 @@
     </div>
   </section>
 
-
+  <!-- Yayın Takvimi ve Sayaç Bölümü -->
 <section id="schedule" class="p-8" data-aos="zoom-in">
   <h2 class="text-3xl font-bold mb-4 text-white text-center">Haftalık Yayın Takvimi</h2>
   <div class="flex justify-center mb-12">
     <img src="images/weekly-schedule.jpeg" alt="Haftalık Yayın Takvimi" class="rounded-lg shadow-lg max-w-full h-auto" />
   </div>
 
-
+  <!-- Sayaç ve Takvim Butonu -->
   <div class="relative max-w-5xl mx-auto mt-14 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)]" data-aos="zoom-in-up">
     <img src="images/rdr2.jpg" alt="RDR2 Arka Plan" class="absolute inset-0 w-full h-full object-cover z-0 scale-105" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200" />
     <div class="absolute inset-0 bg-black bg-opacity-60 z-10 backdrop-blur-sm" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200"></div>
@@ -270,7 +270,61 @@
   </div>
 </section>
 
-  <!-- Hakkımda Bölümü -->
+<!-- Bugünün Tavsiyesi -->
+<section class="p-8" data-aos="fade-up">
+  <h2 class="text-3xl font-bold mb-6 text-white">Bugünün Tavsiyesi 🎮</h2>
+  <div class="bg-gray-800 rounded-2xl p-6 text-center shadow-xl text-white text-xl font-semibold max-w-2xl mx-auto">
+    <span id="randomGame">Yükleniyor...</span>
+  </div>
+</section>
+
+<script>
+  const games = [
+  // Klasikler (30+)
+  "Pac-Man", "Super Mario Bros.", "Tetris", "The Legend of Zelda", "Sonic the Hedgehog", "Street Fighter II", "Mega Man 2", "Castlevania", "Donkey Kong", "Duck Hunt",
+  "Galaga", "Space Invaders", "Bomberman", "Contra", "Double Dragon", "Prince of Persia", "Q*bert", "Frogger", "Zaxxon", "Metroid",
+  "Punch-Out!!", "Excitebike", "Famicom Wars", "Dr. Mario", "Adventure Island", "Paperboy", "Ice Climber", "Balloon Fight", "Kid Icarus", "Bubble Bobble",
+
+  // Vazgeçilmezler (30+)
+  "The Witcher 3: Wild Hunt", "Red Dead Redemption 2", "Minecraft", "Stardew Valley", "Celeste", "Hollow Knight", "Portal 2", "Half-Life 2", "Undertale", "Dark Souls III",
+  "BioShock", "Mass Effect 2", "Skyrim", "GTA V", "Metal Gear Solid V", "Persona 5", "The Last of Us", "Bloodborne", "God of War (2018)", "Sekiro: Shadows Die Twice",
+  "Uncharted 4", "Resident Evil 2 Remake", "NieR: Automata", "The Legend of Zelda: Breath of the Wild", "Firewatch", "Journey", "Inside", "Control", "Dishonored 2", "Spelunky 2",
+
+  // Yeni Çıkanlar (30+)
+  "Baldur's Gate 3", "Hi-Fi Rush", "Alan Wake 2", "The Finals", "Sea of Stars", "Cyberpunk 2077", "Pizza Tower", "Lies of P", "Resident Evil 4 Remake", "Hollow Knight: Silksong",
+  "Marvel's Spider-Man 2", "Starfield", "Elden Ring", "Stray", "Dredge", "Metroid Dread", "The Callisto Protocol", "Atomic Heart", "Returnal", "Deathloop",
+  "Ratchet & Clank: Rift Apart", "Ghostwire: Tokyo", "Sifu", "Plague Tale: Requiem", "Wo Long: Fallen Dynasty", "Tunic", "Scorn", "Immortals of Aveum", "Exoprimal", "Remnant II",
+
+  // Indie Parlayanlar (30+)
+  "Tunic", "Loop Hero", "Inscryption", "Slay the Spire", "Katana ZERO", "Spiritfarer", "A Short Hike", "Firewatch", "Oxenfree", "Superliminal",
+  "The Pathless", "Eastward", "Carrion", "Wargroove", "Unpacking", "Baba Is You", "Celeste", "My Friend Pedro", "Little Misfortune", "Papers, Please",
+  "Night in the Woods", "Undertale", "OneShot", "The Red Strings Club", "LISA: The Painful", "Death's Door", "Cult of the Lamb", "Moonlighter", "Gris", "Raji: An Ancient Epic",
+
+  // Strateji & Simülasyon (30+)
+  "Cities Skylines 2", "Frostpunk", "Crusader Kings III", "Europa Universalis IV", "Hearts of Iron IV", "Northgard", "Factorio", "RimWorld", "Oxygen Not Included", "Banished",
+  "They Are Billions", "Anno 1800", "SimCity 4", "Transport Fever 2", "Planet Zoo", "Zoo Tycoon", "Prison Architect", "Surviving Mars", "The Universim", "Industries of Titan",
+  "Tropico 6", "Rise of Nations", "Age of Empires IV", "Empire Earth", "Civilization VI", "Civilization V", "Total War: Warhammer II", "Total War: Shogun 2", "Endzone", "Kingdoms Reborn",
+
+  // Hayatta Kalma (30+)
+  "Project Zomboid", "The Forest", "Green Hell", "7 Days to Die", "Don't Starve Together", "Subnautica", "Valheim", "Terraria", "ARK: Survival Evolved", "Raft",
+  "Stranded Deep", "The Long Dark", "DayZ", "Rust", "SCUM", "Icarus", "V Rising", "Grounded", "Infection Free Zone", "The Infected",
+  "This War of Mine", "Dysmantle", "The Wild Eight", "State of Decay 2", "Zombo Buster Advance", "Sheltered", "Colony Survival", "Ancestors: The Humankind Odyssey", "Eco", "Frozen Flame",
+
+  // Online / Multiplayer (30+)
+  "CS2", "Valorant", "Overwatch 2", "Rocket League", "League of Legends", "Apex Legends", "Teamfight Tactics", "Hearthstone", "Smash Bros. Ultimate", "PUBG",
+  "Fortnite", "Dota 2", "Team Fortress 2", "Battlefield 2042", "Call of Duty: Warzone", "Fall Guys", "Among Us", "Phasmophobia", "The Cycle: Frontier", "Destiny 2",
+  "Splitgate", "Paladins", "Brawlhalla", "Spellbreak", "Dead by Daylight", "GTFO", "Sea of Thieves", "Deep Rock Galactic", "Warframe", "Payday 2",
+
+  // Kart / Roguelike / Deneysel (30+)
+  "Slay the Spire", "Vampire Survivors", "Return of the Obra Dinn", "Children of Morta", "Dead Cells", "Noita", "Sunless Sea", "Risk of Rain Returns", "Risk of Rain 2", "Rogue Legacy 2",
+  "Darkest Dungeon", "FTL: Faster Than Light", "Into the Breach", "The Binding of Isaac", "Loop Hero", "Dicey Dungeons", "Monster Train", "Griftlands", "Slormancer", "Tainted Grail: Conquest",
+  "Neon Abyss", "Revita", "Void Bastards", "Spelunky 2", "Curse of the Dead Gods", "Crown Trick", "One Step From Eden", "Dome Keeper", "Black Book", "Peglin"
+];
+  const randomGame = games[Math.floor(Math.random() * games.length)];
+  document.getElementById("randomGame").textContent = `🎯 Bugünün oyunu: ${randomGame}`;
+</script>
+
+<!-- Hakkımda Bölümü -->
   <div id="about" class="h-32 -mt-32"></div>
   <section class="p-8 scroll-mt-24" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-6">Hakkımda</h2>
@@ -286,7 +340,7 @@
     </div>
   </section>
 
-
+  <!-- İletişim ve Sosyal Medya -->
   <section id="contact" class="p-8" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-6">Sosyal Medya ve İletişim</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -323,7 +377,7 @@
     </div>
   </section>
 
-
+  <!-- AOS ve Scroll Scriptleri -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
@@ -355,14 +409,14 @@
     }, 1000);
   </script>
 
-
+  <!-- Footer -->
   <footer class="bg-gray-900 text-center text-white py-6 mt-8">
     <div class="mb-2">
       <a href="mailto:gamecapsule@hotmail.com" class="text-sm hover:underline">📧 gamecapsule@hotmail.com</a>
     </div>
     <p class="text-sm">© 2025 GameCapsuleTV – Tüm hakları saklıdır.</p>
   </footer>
-
+<!-- Sürpriz Modal -->
 <div id="surpriseModal" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 backdrop-blur-md">
   <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl px-8 py-10 max-w-xl w-full shadow-2xl border border-purple-500 text-center animate__animated animate__fadeInUp">
     <h2 class="text-4xl font-extrabold mb-6 text-white text-center">
