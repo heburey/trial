@@ -354,32 +354,34 @@
   pixel: ["Celeste", "Undertale", "Loop Hero", "Eastward", "Papers, Please", "Stardew Valley", "Hyper Light Drifter", "The Messenger", "Blasphemous", "LISA: The Painful"]
 };
 
-  document.getElementById("gameQuiz").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const answers = {
-    q1: e.target.q1.value,
-    q2: e.target.q2.value,
-    q3: e.target.q3.value,
-    q4: e.target.q4.value,
-    q5: e.target.q5.value
-  };
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("gameQuiz").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const answers = {
+        q1: e.target.q1.value,
+        q2: e.target.q2.value,
+        q3: e.target.q3.value,
+        q4: e.target.q4.value,
+        q5: e.target.q5.value
+      };
 
-  const selected = [
-    ...(quizAnswers[answers.q1] || []),
-    ...(quizAnswers[answers.q2] || []),
-    ...(quizAnswers[answers.q3] || []),
-    ...(quizAnswers[answers.q4] || []),
-    ...(quizAnswers[answers.q5] || [])
-  ];
+      const selected = [
+        ...(quizAnswers[answers.q1] || []),
+        ...(quizAnswers[answers.q2] || []),
+        ...(quizAnswers[answers.q3] || []),
+        ...(quizAnswers[answers.q4] || []),
+        ...(quizAnswers[answers.q5] || [])
+      ];
 
-  const finalSet = [...new Set(selected)];
-  const suggestion = finalSet.length > 0 ? finalSet[Math.floor(Math.random() * finalSet.length)] : "Outer Wilds";
+      const finalSet = [...new Set(selected)];
+      const suggestion = finalSet.length > 0 ? finalSet[Math.floor(Math.random() * finalSet.length)] : "Outer Wilds";
 
-  const descriptions = descriptionsData;
-  const descriptionText = descriptions[suggestion] || "Bu oyun için açıklama bulunamadı.";
+      const descriptions = descriptionsData;
+      const descriptionText = descriptions[suggestion] || "Bu oyun için açıklama bulunamadı.";
 
-  document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic'>${descriptionText}</span>`;
-});
+      document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic'>${descriptionText}</span>`;
+    });
+  });
 </script>
 
 <script>
