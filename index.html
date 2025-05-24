@@ -372,6 +372,11 @@
       const index = Math.floor(Math.random() * finalSet.length);
       window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
     }
+    const suggestion = window.lastSuggestion[key];
+    if (!window.lastSuggestion[key]) {
+      const index = Math.floor(Math.random() * finalSet.length);
+      window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
+    }
     
     document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic' id='gameDescription'></span>`;
 
@@ -651,4 +656,3 @@ if (descriptions[suggestion]) {
 </script>
 </body>
 </html>
-
