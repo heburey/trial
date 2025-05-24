@@ -356,13 +356,12 @@
 
   document.getElementById("gameQuiz").addEventListener("submit", function (e) {
   e.preventDefault();
-  const form = e.target;
   const answers = {
-    q1: form.q1.value,
-    q2: form.q2.value,
-    q3: form.q3.value,
-    q4: form.q4.value,
-    q5: form.q5.value
+    q1: e.target.q1.value,
+    q2: e.target.q2.value,
+    q3: e.target.q3.value,
+    q4: e.target.q4.value,
+    q5: e.target.q5.value
   };
 
   const selected = [
@@ -374,14 +373,12 @@
   ];
 
   const finalSet = [...new Set(selected)];
-  const index = Math.floor(Math.random() * finalSet.length);
-  const suggestion = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
+  const suggestion = finalSet.length > 0 ? finalSet[Math.floor(Math.random() * finalSet.length)] : "Outer Wilds";
 
-  document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic' id='gameDescription'></span>`;
+  const descriptions = window.descriptions || {};
+  const descriptionText = descriptions[suggestion] || "Bu oyun için açıklama bulunamadı.";
 
-  if (descriptions[suggestion]) {
-    document.getElementById("gameDescription").textContent = descriptions[suggestion];
-  }
+  document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic'>${descriptionText}</span>`;
 });
 </script>
 
