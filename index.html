@@ -365,13 +365,10 @@
 
   const finalSet = [...new Set(selected)];
   const key = JSON.stringify(answers);
-  if (!window.lastSuggestion) window.lastSuggestion = {};
-  if (!window.lastSuggestion[key]) {
-    const index = Math.floor(Math.random() * finalSet.length);
-    window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
-  }
+  const index = Math.floor(Math.random() * finalSet.length);
+  const suggestion = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
 
-  const suggestion = window.lastSuggestion[key];
+  // const suggestion = window.lastSuggestion[key]; (devre dışı bırakıldı, aşağıda rastgele belirleniyor)
   document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic' id='gameDescription'></span>`;
 
   const descriptions = {
