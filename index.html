@@ -384,16 +384,6 @@
 
 <script>
 const descriptionsData = {
-  "Dark Souls III": "**Dark Souls III**\nKaranlık ve gotik bir dünyada geçen bu oyun, sabır ve dikkat gerektiren zorlu savaşlara odaklanıyor. Hikâye parçacıklarla anlatılıyor ve derin bir atmosfer sunuyor. Her ölüm bir öğrenme süreci olarak görülüyor.",
-  "Celeste": "**Celeste**\nDağ tırmanışı yapan bir karakterin hem fiziksel hem duygusal mücadelesine tanık oluyorsunuz. Zorlayıcı platform mekanikleriyle kendinizi aşmanız gerekiyor. Umut, kaygı ve özgüven temaları işleniyor.",
-  "Sekiro: Shadows Die Twice": "**Sekiro: Shadows Die Twice**\nBir samuray olarak intikam almak için çıktığınız yolda reflekslerinizi test ediyorsunuz. Zorlayıcı boss savaşları ve düşman yapay zekâsı dikkat çekiyor. Japon mitolojisi ve tarihine dayanan zengin bir anlatı sunuyor.",
-  "Spelunky 2": "**Spelunky 2**\nTehlikelerle
-  "Dark Souls III": "**Dark Souls III**\nKaranlık ve gotik bir dünyada geçen bu oyun, sabır ve dikkat gerektiren zorlu savaşlara odaklanıyor. Hikâye parçacıklarla anlatılıyor ve derin bir atmosfer sunuyor. Her ölüm bir öğrenme süreci olarak görülüyor.",
-  "Celeste": "**Celeste**\nDağ tırmanışı yapan bir karakterin hem fiziksel hem duygusal mücadelesine tanık oluyorsunuz. Zorlayıcı platform mekanikleriyle kendinizi aşmanız gerekiyor. Umut, kaygı ve özgüven temaları işleniyor.",
-  "Sekiro: Shadows Die Twice": "**Sekiro: Shadows Die Twice**\nBir samuray olarak intikam almak için çıktığınız yolda reflekslerinizi test ediyorsunuz. Zorlayıcı boss savaşları ve düşman yapay zekâsı dikkat çekiyor. Japon mitolojisi ve tarihine dayanan zengin bir anlatı sunuyor.",
-  "Spelun
-  "Dark Souls III": "**Dark Souls III**\nKaranlık ve gotik bir dünyada geçen bu oyun, sabır ve dikkat gerektiren zorlu savaşlara odaklanıyor. Hikâye parçacıklarla anlatılıyor ve derin bir atmosfer sunuyor. Her ölüm bir öğrenme süreci olarak görülüyor.",
-  "Celeste": "**Celeste
   "Life is Strange": "**Life is Strange**
 Liseli bir öğrencinin zamanda geri sarma gücünü keşfetmesiyle olaylar gelişiyor. Seçimleriniz hikâyenin gidişatını etkiliyor. Gençlik, dostluk ve kayıp temalarını işliyor.",
   "The Last of Us": "**The Last of Us**
@@ -627,3 +617,61 @@ const games = [
     <button onclick="document.getElementById('surpriseModal').classList.add('hidden')" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300">
       🚀 Kapat
     </button>
+  </div>
+</div>
+
+<canvas id="meteorsCanvas" class="fixed top-0 left-0 w-full h-full z-40 pointer-events-none hidden"></canvas>
+<script>
+  const canvas = document.getElementById('meteorsCanvas');
+  const ctx = canvas.getContext('2d');
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  let meteors = [];
+  function createMeteors() {
+    meteors = Array.from({ length: 25 }, () => ({
+      x: Math.random() * width + width * 0.25,
+      y: Math.random() * -height,
+      size: Math.random() * 2 + 1,
+      speedX: -2,
+      speedY: 4
+    }));
+  }
+
+  function drawMeteors() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.lineWidth = 1.5;
+    meteors.forEach(meteor => {
+      ctx.beginPath();
+      ctx.moveTo(meteor.x, meteor.y);
+      ctx.lineTo(meteor.x - meteor.speedX * 5, meteor.y - meteor.speedY * 5);
+      ctx.stroke();
+      meteor.x += meteor.speedX;
+      meteor.y += meteor.speedY;
+      if (meteor.y > height || meteor.x < 0) {
+        meteor.x = Math.random() * width + width * 0.25;
+        meteor.y = Math.random() * -height;
+      }
+    });
+    requestAnimationFrame(drawMeteors);
+  }
+
+  document.getElementById("confettiBtn").addEventListener("click", () => {
+    const meteorCanvas = document.getElementById("meteorsCanvas");
+    meteorCanvas.classList.remove("hidden");
+    createMeteors();
+    drawMeteors();
+  });
+
+  document.querySelector("#surpriseModal button").addEventListener("click", () => {
+    document.getElementById("meteorsCanvas").classList.add("hidden");
+  });
+
+</body>
+</html>
