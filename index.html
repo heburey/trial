@@ -372,7 +372,12 @@
       const index = Math.floor(Math.random() * finalSet.length);
       window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
     }
-    const suggestion = window.lastSuggestion[key];
+    ion = {};
+if (!window.lastSuggestion[key]) {
+  const index = Math.floor(Math.random() * finalSet.length);
+  window.lastSuggestion[key] = finalSet.length > 0 ? finalSet[index] : "Outer Wilds";
+}
+const suggestion = window.lastSuggestion[key];
     document.getElementById("quizResult").textContent = `🎮 Önerimiz: ${suggestion}`;
   });
 </script>
