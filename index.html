@@ -84,17 +84,17 @@
   </script>
 </head>
 <body>
-  <!-- Sürpriz Butonu (Tüm cihazlar için) -->
+
   <div class="fixed bottom-6 right-6 z-50">
     <button id="confettiBtn" class="bg-gradient-to-br from-rose-600 via-fuchsia-600 to-indigo-600 hover:brightness-110 text-white px-6 py-3 rounded-full shadow-2xl font-semibold text-lg transition-transform duration-300 transform hover:scale-110 focus:outline-none animate__animated animate__pulse animate__infinite">
   👉 Dokun
 </button>
   </div>
 
-  <!-- Confetti Kütüphanesi -->
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-  <!-- Confetti ve Sürpriz Mesaj Scripti -->
+
   <script>
     const btn = document.getElementById("confettiBtn");
     btn.addEventListener("click", () => {
@@ -127,7 +127,7 @@
       
 </head>
 <body>
-  <!-- Navbar -->
+
 <nav class="relative flex flex-wrap md:flex-nowrap items-center justify-between px-6 py-4 bg-gradient-to-r from-gray-900 via-black to-gray-900 shadow-md sticky top-0 z-50 border-b border-gray-800">
   <a href="index.html" class="flex items-center space-x-3 mb-2 md:mb-0">
   <img src="images/logo.png" alt="GameCapsuleTV Logo" class="h-10 w-10 rounded-full shadow-lg ring-2 ring-purple-600" />
@@ -141,13 +141,13 @@
   </div>
 </nav>
 
-<!-- Yüklenme Ekranı -->
+
   <div id="preloader" class="fixed inset-0 bg-cover bg-center z-50 flex items-center justify-center flex-col gap-4" style="background-image: url('images/background.jpg');">
     <img src="images/logo.png" alt="Yükleniyor" class="w-20 h-20 animate-spin-slow rounded-full-loader">
     <h1 class="text-white text-xl animate-pulse">GameCapsuleTV yükleniyor...</h1>
   </div>
   
-  <!-- Açılış Bölümü -->
+
   <section class="flex flex-col items-center justify-center h-screen text-center relative overflow-hidden" style="background-image: url('images/background.jpg'); background-size: cover; background-position: center;">
   <div class="absolute w-full h-full bg-black opacity-60 z-0"></div>
     <div class="relative z-10">
@@ -158,7 +158,7 @@
     </div>
   </section>
 
-  <!-- YouTube Bölümü -->
+
   <section id="youtube" class="p-8" data-aos="zoom-in-up">
     <h2 class="text-3xl font-bold mb-4">YouTube</h2>
     <div class="platform-card bg-gray-800 p-4 rounded-lg shadow-md">
@@ -175,14 +175,14 @@
     </div>
   </section>
 
-  <!-- Yayın Takvimi ve Sayaç Bölümü -->
+
 <section id="schedule" class="p-8" data-aos="zoom-in">
   <h2 class="text-3xl font-bold mb-4 text-white text-center">Haftalık Yayın Takvimi</h2>
   <div class="flex justify-center mb-12">
     <img src="images/weekly-schedule.jpeg" alt="Haftalık Yayın Takvimi" class="rounded-lg shadow-lg max-w-full h-auto" />
   </div>
 
-  <!-- Sayaç ve Takvim Butonu -->
+
   <div class="relative max-w-5xl mx-auto mt-14 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.4)]" data-aos="zoom-in-up">
     <img src="images/rdr2.jpg" alt="RDR2 Arka Plan" class="absolute inset-0 w-full h-full object-cover z-0 scale-105" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200" />
     <div class="absolute inset-0 bg-black bg-opacity-60 z-10 backdrop-blur-sm" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200"></div>
@@ -286,7 +286,7 @@
     </div>
   </section>
 
-  <!-- İletişim ve Sosyal Medya -->
+
   <section id="contact" class="p-8" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-6">Sosyal Medya ve İletişim</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -323,7 +323,7 @@
     </div>
   </section>
 
-  <!-- AOS ve Scroll Scriptleri -->
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
@@ -355,14 +355,14 @@
     }, 1000);
   </script>
 
-  <!-- Footer -->
+
   <footer class="bg-gray-900 text-center text-white py-6 mt-8">
     <div class="mb-2">
       <a href="mailto:gamecapsule@hotmail.com" class="text-sm hover:underline">📧 gamecapsule@hotmail.com</a>
     </div>
     <p class="text-sm">© 2025 GameCapsuleTV – Tüm hakları saklıdır.</p>
   </footer>
-<!-- Sürpriz Modal -->
+
 <div id="surpriseModal" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 backdrop-blur-md">
   <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl px-8 py-10 max-w-xl w-full shadow-2xl border border-purple-500 text-center animate__animated animate__fadeInUp">
     <h2 class="text-4xl font-extrabold mb-6 text-white text-center">
