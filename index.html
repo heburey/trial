@@ -399,11 +399,13 @@
 
   function drawMeteors() {
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.lineWidth = 1.5;
     meteors.forEach(meteor => {
       ctx.beginPath();
-      ctx.arc(meteor.x, meteor.y, meteor.size, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.moveTo(meteor.x, meteor.y);
+      ctx.lineTo(meteor.x - meteor.speedX * 5, meteor.y - meteor.speedY * 5);
+      ctx.stroke();
       meteor.x += meteor.speedX;
       meteor.y += meteor.speedY;
       if (meteor.y > height || meteor.x < 0) {
