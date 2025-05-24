@@ -270,35 +270,22 @@
   </div>
 </section>
 
-<<!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="images/logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GameCapsuleTV</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <style>
-    body {
-      background-color: #0f0f0f;
-      color: white;
-      font-family: 'Rubik', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-  </style>
-</head>
-<body>
- 
 <!-- Bugünün Tavsiyesi -->
 <section class="py-20 px-6 md:px-0" data-aos="fade-up">
-  <h2 class="text-4xl md:text-5xl font-extrabold mb-16 text-center text-white tracking-wide animate__animated animate__fadeInUp">🎮 Bugünün Tavsiyesi</h2>
-  <div class="relative bg-gray-900 rounded-2xl px-10 py-14 shadow-xl text-white max-w-4xl mx-auto border border-purple-800 overflow-hidden animate__animated animate__fadeIn">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.03),transparent_70%)]"></div>
+  <h2 class="text-4xl md:text-5xl font-extrabold mb-16 text-center text-white tracking-wide animate__animated animate__fadeInUp">
+    <span class="inline-flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.868v4.264a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      Bugünün Tavsiyesi
+    </span>
+  </h2>
+  <div class="relative bg-gradient-to-br from-[#1f1f1f] via-[#111] to-black rounded-3xl px-10 py-14 shadow-2xl text-white max-w-3xl mx-auto border border-purple-700 backdrop-blur-sm overflow-hidden animate__animated animate__fadeIn">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.02),transparent_80%)]"></div>
     <div class="relative z-10">
-      <img id="gameImage" class="w-28 h-28 md:w-36 md:h-36 mx-auto rounded-full shadow-lg ring-4 ring-purple-500 object-cover mb-6" src="" alt="Oyun görseli" />
-      <h3 id="randomGame" class="text-2xl md:text-3xl font-semibold text-purple-300 mb-3 animate__animated animate__fadeInUp">Yükleniyor...</h3>
+      <img id="gameImage" class="w-28 h-28 md:w-32 md:h-32 mx-auto rounded-full shadow-lg ring-4 ring-purple-600 object-cover mb-6 transition duration-500 ease-in-out hover:scale-105" src="" alt="Oyun görseli" />
+      <h3 id="randomGame" class="text-2xl md:text-3xl font-bold text-purple-300 mb-4 animate__animated animate__fadeInUp text-center">Yükleniyor...</h3>
       <p id="gameDescription" class="text-base md:text-lg font-normal text-gray-300 leading-relaxed max-w-2xl mx-auto animate__animated animate__fadeInUp text-center"></p>
     </div>
   </div>
