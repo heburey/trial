@@ -331,19 +331,19 @@
 
 <script>
   const quizAnswers = {
-    relax: ["Stardew Valley", "Spiritfarer", "A Short Hike"],
-    curious: ["Outer Wilds", "Subnautica", "Tunic"],
-    active: ["DOOM Eternal", "Cuphead", "Hades"],
-    story: ["Life is Strange", "Firewatch", "The Last of Us"],
-    challenge: ["Hollow Knight", "Dark Souls III", "Celeste"],
-    fun: ["Among Us", "Overcooked 2", "Fall Guys"],
-    first: ["Portal 2", "Half-Life: Alyx", "Bioshock Infinite"],
-    third: ["Control", "Uncharted 4", "God of War (2018)"],
-    side: ["Dead Cells", "Katana ZERO", "Hollow Knight"],
-    realistic: ["Red Dead Redemption 2", "The Witcher 3", "Cyberpunk 2077"],
-    stylized: ["Gris", "Ori and the Blind Forest", "Spiritfarer"],
-    pixel: ["Celeste", "Undertale", "Loop Hero"]
-  };
+  relax: ["Stardew Valley", "Spiritfarer", "A Short Hike", "Gris", "Unpacking", "Firewatch", "Slime Rancher", "Abzû", "Garden Story", "Kind Words"],
+  curious: ["Outer Wilds", "Subnautica", "Tunic", "The Witness", "Return of the Obra Dinn", "Fez", "The Pathless", "INSIDE", "Oxenfree", "Eastshade"],
+  active: ["DOOM Eternal", "Cuphead", "Hades", "Risk of Rain 2", "Dead Cells", "Vampire Survivors", "Hi-Fi Rush", "Katana ZERO", "Neon Abyss", "Sifu"],
+  story: ["Life is Strange", "Firewatch", "The Last of Us", "Red Dead Redemption 2", "To the Moon", "What Remains of Edith Finch", "Detroit: Become Human", "Brothers: A Tale of Two Sons", "Heaven's Vault", "Night in the Woods"],
+  challenge: ["Hollow Knight", "Dark Souls III", "Celeste", "Sekiro: Shadows Die Twice", "Spelunky 2", "Getting Over It", "Enter the Gungeon", "Ender Lilies", "Returnal", "Furi"],
+  fun: ["Among Us", "Overcooked 2", "Fall Guys", "Human: Fall Flat", "Untitled Goose Game", "Moving Out", "Pummel Party", "Gang Beasts", "PlateUp!", "Party Animals"],
+  first: ["Portal 2", "Half-Life: Alyx", "Bioshock Infinite", "The Stanley Parable", "SUPERHOT", "Call of Duty: Warzone", "Valorant", "CS2", "Metro Exodus", "Far Cry 5"],
+  third: ["Control", "Uncharted 4", "God of War (2018)", "The Witcher 3", "Mass Effect 2", "Marvel's Spider-Man", "Tomb Raider", "Assassin’s Creed Valhalla", "The Last of Us Part II", "Alan Wake 2"],
+  side: ["Dead Cells", "Katana ZERO", "Hollow Knight", "Celeste", "The Messenger", "Ender Lilies", "Shovel Knight", "Ori and the Blind Forest", "Rogue Legacy 2", "Salt and Sanctuary"],
+  realistic: ["Red Dead Redemption 2", "The Witcher 3", "Cyberpunk 2077", "Metro Exodus", "Far Cry 6", "Battlefield 2042", "Call of Duty: Modern Warfare", "F1 23", "Assassin’s Creed Odyssey", "Arma 3"],
+  stylized: ["Gris", "Ori and the Blind Forest", "Spiritfarer", "Slay the Spire", "Tunic", "Little Misfortune", "Raji: An Ancient Epic", "Okami HD", "Sky: Children of the Light", "Sable"],
+  pixel: ["Celeste", "Undertale", "Loop Hero", "Eastward", "Papers, Please", "Stardew Valley", "Hyper Light Drifter", "The Messenger", "Blasphemous", "LISA: The Painful"]
+};
 
   document.getElementById("gameQuiz").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -356,11 +356,12 @@
     };
 
     const selected = [
-      ...quizAnswers[answers.q1] || [],
-      ...quizAnswers[answers.q3] || [],
-      ...quizAnswers[answers.q4] || [],
-      ...quizAnswers[answers.q5] || []
-    ];
+  ...quizAnswers[answers.q1] || [],
+  ...quizAnswers[answers.q2] || [],
+  ...quizAnswers[answers.q3] || [],
+  ...quizAnswers[answers.q4] || [],
+  ...quizAnswers[answers.q5] || []
+];
 
     const finalSet = [...new Set(selected)];
     const suggestion = finalSet.length > 0 ? finalSet[Math.floor(Math.random() * finalSet.length)] : "Outer Wilds";
