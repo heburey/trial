@@ -278,29 +278,130 @@
   </div>
 </section>
 
+<!-- Oyun Öneri Quiz -->
+<section class="p-8 bg-gray-900 text-white" data-aos="fade-up">
+  <h2 class="text-3xl font-bold mb-6 text-center">Nasıl Bir Oyun Arıyorsun?</h2>
+  <form id="gameQuiz" class="max-w-xl mx-auto space-y-6">
+    <div>
+      <label class="block mb-2 font-semibold">1. Bugün ruh hâlin nasıl?</label>
+      <select name="q1" class="w-full p-3 rounded bg-gray-800 text-white">
+        <option value="relax">Rahatlamak istiyorum</option>
+        <option value="curious">Yeni şeyler keşfetmek istiyorum</option>
+        <option value="active">Heyecan arıyorum</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-semibold">2. Zamanın ne kadar?</label>
+      <select name="q2" class="w-full p-3 rounded bg-gray-800 text-white">
+        <option value="short">15-30 dakika</option>
+        <option value="medium">1-2 saat</option>
+        <option value="long">Saatlerce</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-semibold">3. Oyunlardan beklentin nedir?</label>
+      <select name="q3" class="w-full p-3 rounded bg-gray-800 text-white">
+        <option value="story">Güzel bir hikâye</option>
+        <option value="challenge">Zorlayıcı yapısı</option>
+        <option value="fun">Eğlenceli vakit geçirmek</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-semibold">4. Tercih ettiğin perspektif?</label>
+      <select name="q4" class="w-full p-3 rounded bg-gray-800 text-white">
+        <option value="first">1. şahıs</option>
+        <option value="third">3. şahıs</option>
+        <option value="side">2D/Yandan</option>
+      </select>
+    </div>
+    <div>
+      <label class="block mb-2 font-semibold">5. Grafik tercihin nedir?</label>
+      <select name="q5" class="w-full p-3 rounded bg-gray-800 text-white">
+        <option value="realistic">Gerçekçi</option>
+        <option value="stylized">Stilize</option>
+        <option value="pixel">Piksel art</option>
+      </select>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="mt-4 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-lg font-semibold transition">Ne Önerirsin?</button>
+    </div>
+  </form>
+  <div id="quizResult" class="mt-8 text-center text-xl font-bold text-yellow-300"></div>
+</section>
+
+<script>
+  const allGames = [
+  "Stardew Valley", "A Short Hike", "Spiritfarer", "Outer Wilds", "Subnautica", "DOOM Eternal", "Hades", "Cuphead", "Life is Strange",
+  "Firewatch", "The Last of Us", "Hollow Knight", "Dark Souls III", "Celeste", "Tunic", "Dead Cells", "Red Dead Redemption 2",
+  "Baba Is You", "Loop Hero", "Ori and the Blind Forest", "Inside", "Journey", "Inscryption", "Slay the Spire", "Disco Elysium",
+  "BioShock Infinite", "Half-Life: Alyx", "Portal 2", "Return of the Obra Dinn", "Gris", "The Stanley Parable", "Oxenfree", "Unpacking",
+  "Doki Doki Literature Club", "Among Us", "Terraria", "RimWorld", "Factorio", "Papers, Please", "Risk of Rain 2", "Noita", "The Forest",
+  "7 Days to Die", "Green Hell", "Valheim", "FTL: Faster Than Light", "Dota 2", "League of Legends", "CS2", "Valorant", "Overwatch 2",
+  "Rocket League", "Apex Legends", "Phasmophobia", "Sea of Thieves", "TFT", "Hearthstone", "Project Zomboid", "Payday 2",
+  "Minecraft", "Cyberpunk 2077", "Alan Wake 2", "Hi-Fi Rush", "Starfield", "Elden Ring", "Resident Evil 4 Remake", "Pizza Tower",
+  "Sifu", "Deathloop", "Returnal", "Stray", "Marvel’s Spider-Man", "Control", "NieR: Automata", "Sekiro: Shadows Die Twice",
+  "Persona 5 Royal", "The Witcher 3", "GTA V", "Skyrim", "Mass Effect 2", "Uncharted 4", "God of War (2018)", "Spelunky 2",
+  "Don’t Starve Together", "The Long Dark", "Slime Rancher", "Dredge", "Cult of the Lamb", "Katana ZERO", "Children of Morta",
+  "OneShot", "The Red Strings Club", "Moonlighter", "Bastion", "Transistor", "Superliminal", "Neon White", "Rogue Legacy 2",
+  "LISA: The Painful", "Black Book", "Dome Keeper", "Revita", "Curse of the Dead Gods", "Crown Trick", "Into the Breach",
+  "Monster Train", "Griftlands", "Tainted Grail: Conquest", "Vampire Survivors", "Ender Lilies", "Ghost of Tsushima",
+  "Totally Accurate Battle Simulator", "Northgard", "Tropico 6", "Banished", "Frostpunk", "Oxygen Not Included",
+  "Cities: Skylines 2", "Europa Universalis IV", "Hearts of Iron IV", "Crusader Kings III", "Age of Empires IV"
+];
+
+  document.getElementById("gameQuiz").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const mood = e.target.mood.value;
+    const answers = {
+      q1: form.q1.value,
+      q2: form.q2.value,
+      q3: form.q3.value,
+      q4: form.q4.value,
+      q5: form.q5.value
+    };
+
+    const answers = {
+      q1: e.target.q1.value,
+      q2: e.target.q2.value,
+      q3: e.target.q3.value,
+      q4: e.target.q4.value,
+      q5: e.target.q5.value
+    };
+
+    const filters = [answers.q1, answers.q2, answers.q3, answers.q4, answers.q5];
+    const matchedGames = allGames.filter(game => {
+      const text = game.toLowerCase();
+      return filters.some(f => text.includes(f));
+    });
+
+    const suggestion = matchedGames.length > 0 ? matchedGames[Math.floor(Math.random() * matchedGames.length)] : allGames[Math.floor(Math.random() * allGames.length)];
+    document.getElementById("quizResult").textContent = `🎮 Önerimiz: ${suggestion}`;
+  });
+</script>
+
 <script>
   const games = [
-  // Klasikler
+  // Klasikler (30+)
   "Pac-Man", "Super Mario Bros.", "Tetris", "The Legend of Zelda", "Sonic the Hedgehog", "Street Fighter II", "Mega Man 2", "Castlevania", "Donkey Kong", "Duck Hunt",
   "Galaga", "Space Invaders", "Bomberman", "Contra", "Double Dragon", "Prince of Persia", "Q*bert", "Frogger", "Zaxxon", "Metroid",
   "Punch-Out!!", "Excitebike", "Famicom Wars", "Dr. Mario", "Adventure Island", "Paperboy", "Ice Climber", "Balloon Fight", "Kid Icarus", "Bubble Bobble",
 
-  // Vazgeçilmezler
+  // Vazgeçilmezler (30+)
   "The Witcher 3: Wild Hunt", "Red Dead Redemption 2", "Minecraft", "Stardew Valley", "Celeste", "Hollow Knight", "Portal 2", "Half-Life 2", "Undertale", "Dark Souls III",
   "BioShock", "Mass Effect 2", "Skyrim", "GTA V", "Metal Gear Solid V", "Persona 5", "The Last of Us", "Bloodborne", "God of War (2018)", "Sekiro: Shadows Die Twice",
   "Uncharted 4", "Resident Evil 2 Remake", "NieR: Automata", "The Legend of Zelda: Breath of the Wild", "Firewatch", "Journey", "Inside", "Control", "Dishonored 2", "Spelunky 2",
 
-  // Yeni Çıkanlar
+  // Yeni Çıkanlar (30+)
   "Baldur's Gate 3", "Hi-Fi Rush", "Alan Wake 2", "The Finals", "Sea of Stars", "Cyberpunk 2077", "Pizza Tower", "Lies of P", "Resident Evil 4 Remake", "Hollow Knight: Silksong",
   "Marvel's Spider-Man 2", "Starfield", "Elden Ring", "Stray", "Dredge", "Metroid Dread", "The Callisto Protocol", "Atomic Heart", "Returnal", "Deathloop",
   "Ratchet & Clank: Rift Apart", "Ghostwire: Tokyo", "Sifu", "Plague Tale: Requiem", "Wo Long: Fallen Dynasty", "Tunic", "Scorn", "Immortals of Aveum", "Exoprimal", "Remnant II",
 
-  // Indie Parlayanlar
+  // Indie Parlayanlar (30+)
   "Tunic", "Loop Hero", "Inscryption", "Slay the Spire", "Katana ZERO", "Spiritfarer", "A Short Hike", "Firewatch", "Oxenfree", "Superliminal",
   "The Pathless", "Eastward", "Carrion", "Wargroove", "Unpacking", "Baba Is You", "Celeste", "My Friend Pedro", "Little Misfortune", "Papers, Please",
   "Night in the Woods", "Undertale", "OneShot", "The Red Strings Club", "LISA: The Painful", "Death's Door", "Cult of the Lamb", "Moonlighter", "Gris", "Raji: An Ancient Epic",
 
-  // Strateji & Simülasyon
+  // Strateji & Simülasyon (30+)
   "Cities Skylines 2", "Frostpunk", "Crusader Kings III", "Europa Universalis IV", "Hearts of Iron IV", "Northgard", "Factorio", "RimWorld", "Oxygen Not Included", "Banished",
   "They Are Billions", "Anno 1800", "SimCity 4", "Transport Fever 2", "Planet Zoo", "Zoo Tycoon", "Prison Architect", "Surviving Mars", "The Universim", "Industries of Titan",
   "Tropico 6", "Rise of Nations", "Age of Empires IV", "Empire Earth", "Civilization VI", "Civilization V", "Total War: Warhammer II", "Total War: Shogun 2", "Endzone", "Kingdoms Reborn",
@@ -310,12 +411,12 @@
   "Stranded Deep", "The Long Dark", "DayZ", "Rust", "SCUM", "Icarus", "V Rising", "Grounded", "Infection Free Zone", "The Infected",
   "This War of Mine", "Dysmantle", "The Wild Eight", "State of Decay 2", "Zombo Buster Advance", "Sheltered", "Colony Survival", "Ancestors: The Humankind Odyssey", "Eco", "Frozen Flame",
 
-  // Online / Multiplayer
+  // Online / Multiplayer (30+)
   "CS2", "Valorant", "Overwatch 2", "Rocket League", "League of Legends", "Apex Legends", "Teamfight Tactics", "Hearthstone", "Smash Bros. Ultimate", "PUBG",
   "Fortnite", "Dota 2", "Team Fortress 2", "Battlefield 2042", "Call of Duty: Warzone", "Fall Guys", "Among Us", "Phasmophobia", "The Cycle: Frontier", "Destiny 2",
   "Splitgate", "Paladins", "Brawlhalla", "Spellbreak", "Dead by Daylight", "GTFO", "Sea of Thieves", "Deep Rock Galactic", "Warframe", "Payday 2",
 
-  // Kart / Roguelike / Deneysel
+  // Kart / Roguelike / Deneysel (30+)
   "Slay the Spire", "Vampire Survivors", "Return of the Obra Dinn", "Children of Morta", "Dead Cells", "Noita", "Sunless Sea", "Risk of Rain Returns", "Risk of Rain 2", "Rogue Legacy 2",
   "Darkest Dungeon", "FTL: Faster Than Light", "Into the Breach", "The Binding of Isaac", "Loop Hero", "Dicey Dungeons", "Monster Train", "Griftlands", "Slormancer", "Tainted Grail: Conquest",
   "Neon Abyss", "Revita", "Void Bastards", "Spelunky 2", "Curse of the Dead Gods", "Crown Trick", "One Step From Eden", "Dome Keeper", "Black Book", "Peglin"
