@@ -330,28 +330,23 @@
 </section>
 
 <script>
-  const allGames = [
-  "Stardew Valley", "A Short Hike", "Spiritfarer", "Outer Wilds", "Subnautica", "DOOM Eternal", "Hades", "Cuphead", "Life is Strange",
-  "Firewatch", "The Last of Us", "Hollow Knight", "Dark Souls III", "Celeste", "Tunic", "Dead Cells", "Red Dead Redemption 2",
-  "Baba Is You", "Loop Hero", "Ori and the Blind Forest", "Inside", "Journey", "Inscryption", "Slay the Spire", "Disco Elysium",
-  "BioShock Infinite", "Half-Life: Alyx", "Portal 2", "Return of the Obra Dinn", "Gris", "The Stanley Parable", "Oxenfree", "Unpacking",
-  "Doki Doki Literature Club", "Among Us", "Terraria", "RimWorld", "Factorio", "Papers, Please", "Risk of Rain 2", "Noita", "The Forest",
-  "7 Days to Die", "Green Hell", "Valheim", "FTL: Faster Than Light", "Dota 2", "League of Legends", "CS2", "Valorant", "Overwatch 2",
-  "Rocket League", "Apex Legends", "Phasmophobia", "Sea of Thieves", "TFT", "Hearthstone", "Project Zomboid", "Payday 2",
-  "Minecraft", "Cyberpunk 2077", "Alan Wake 2", "Hi-Fi Rush", "Starfield", "Elden Ring", "Resident Evil 4 Remake", "Pizza Tower",
-  "Sifu", "Deathloop", "Returnal", "Stray", "Marvel’s Spider-Man", "Control", "NieR: Automata", "Sekiro: Shadows Die Twice",
-  "Persona 5 Royal", "The Witcher 3", "GTA V", "Skyrim", "Mass Effect 2", "Uncharted 4", "God of War (2018)", "Spelunky 2",
-  "Don’t Starve Together", "The Long Dark", "Slime Rancher", "Dredge", "Cult of the Lamb", "Katana ZERO", "Children of Morta",
-  "OneShot", "The Red Strings Club", "Moonlighter", "Bastion", "Transistor", "Superliminal", "Neon White", "Rogue Legacy 2",
-  "LISA: The Painful", "Black Book", "Dome Keeper", "Revita", "Curse of the Dead Gods", "Crown Trick", "Into the Breach",
-  "Monster Train", "Griftlands", "Tainted Grail: Conquest", "Vampire Survivors", "Ender Lilies", "Ghost of Tsushima",
-  "Totally Accurate Battle Simulator", "Northgard", "Tropico 6", "Banished", "Frostpunk", "Oxygen Not Included",
-  "Cities: Skylines 2", "Europa Universalis IV", "Hearts of Iron IV", "Crusader Kings III", "Age of Empires IV"
-];
+  const quizAnswers = {
+    relax: ["Stardew Valley", "Spiritfarer", "A Short Hike"],
+    curious: ["Outer Wilds", "Subnautica", "Tunic"],
+    active: ["DOOM Eternal", "Cuphead", "Hades"],
+    story: ["Life is Strange", "Firewatch", "The Last of Us"],
+    challenge: ["Hollow Knight", "Dark Souls III", "Celeste"],
+    fun: ["Among Us", "Overcooked 2", "Fall Guys"],
+    first: ["Portal 2", "Half-Life: Alyx", "Bioshock Infinite"],
+    third: ["Control", "Uncharted 4", "God of War (2018)"],
+    side: ["Dead Cells", "Katana ZERO", "Hollow Knight"],
+    realistic: ["Red Dead Redemption 2", "The Witcher 3", "Cyberpunk 2077"],
+    stylized: ["Gris", "Ori and the Blind Forest", "Spiritfarer"],
+    pixel: ["Celeste", "Undertale", "Loop Hero"]
+  };
 
   document.getElementById("gameQuiz").addEventListener("submit", function (e) {
     e.preventDefault();
-    const mood = e.target.mood.value;
     const answers = {
       q1: e.target.q1.value,
       q2: e.target.q2.value,
@@ -360,21 +355,15 @@
       q5: e.target.q5.value
     };
 
-    const answers = {
-      q1: e.target.q1.value,
-      q2: e.target.q2.value,
-      q3: e.target.q3.value,
-      q4: e.target.q4.value,
-      q5: e.target.q5.value
-    };
+    const selected = [
+      ...quizAnswers[answers.q1] || [],
+      ...quizAnswers[answers.q3] || [],
+      ...quizAnswers[answers.q4] || [],
+      ...quizAnswers[answers.q5] || []
+    ];
 
-    const filters = [answers.q1, answers.q2, answers.q3, answers.q4, answers.q5];
-    const matchedGames = allGames.filter(game => {
-      const text = game.toLowerCase();
-      return filters.some(f => text.includes(f));
-    });
-
-    const suggestion = matchedGames.length > 0 ? matchedGames[Math.floor(Math.random() * matchedGames.length)] : allGames[Math.floor(Math.random() * allGames.length)];
+    const finalSet = [...new Set(selected)];
+    const suggestion = finalSet.length > 0 ? finalSet[Math.floor(Math.random() * finalSet.length)] : "Outer Wilds";
     document.getElementById("quizResult").textContent = `🎮 Önerimiz: ${suggestion}`;
   });
 </script>
