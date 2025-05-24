@@ -270,13 +270,59 @@
   </div>
 </section>
 
-<!-- Bugünün Tavsiyesi -->
+<<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameCapsuleTV</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: white;
+      font-family: 'Rubik', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+<body>
+ <!-- Bugünün Tavsiyesi -->
 <section class="p-8" data-aos="fade-up">
   <h2 class="text-3xl font-bold mb-6 text-white">Bugünün Tavsiyesi 🎮</h2>
-  <div class="bg-gray-800 rounded-2xl p-6 text-center shadow-xl text-white text-xl font-semibold max-w-2xl mx-auto">
-    <span id="randomGame">Yükleniyor...</span>
+  <div class="bg-gray-800 rounded-2xl p-6 text-center shadow-xl text-white max-w-2xl mx-auto">
+    <img id="gameImage" class="w-32 h-32 mx-auto rounded-full shadow-lg border-4 border-purple-600 mb-4" src="" alt="Oyun görseli" />
+    <div id="randomGame" class="text-xl font-semibold">Yükleniyor...</div>
+    <div id="gameDescription" class="mt-2 text-base font-normal text-gray-300"></div>
   </div>
 </section>
+
+<script>
+  const allGames = [
+    { name: "Hollow Knight", description: "Devasa bir yer altı dünyasında geçen zorlu ve atmosferik bir keşif oyunu.", image: "images/hollow_knight.jpg" },
+    { name: "Stardew Valley", description: "Tarım yapabileceğiniz, arkadaşlık kurabileceğiniz ve huzur bulabileceğiniz bir çiftlik simülasyonu.", image: "images/stardew_valley.jpg" },
+    { name: "Celeste", description: "Kendinizle yüzleştiğiniz zorlu bir dağ tırmanışı ve platform oyunu.", image: "images/celeste.jpg" },
+    { name: "Outer Wilds", description: "Zaman döngüsünde sıkışmış bir gezgin olarak evrenin gizemlerini çözdüğünüz keşif temelli bir oyun.", image: "images/outer_wilds.jpg" },
+    { name: "Spiritfarer", description: "Ölen ruhları son yolculuklarına uğurladığınız duygusal bir menajerlik ve inşa oyunu.", image: "images/spiritfarer.jpg" },
+    { name: "The Witcher 3", description: "Geralt ile büyü, canavarlar ve siyasi entrikalarla dolu bir dünyada görevler üstleniyorsunuz.", image: "images/witcher3.jpg" },
+    { name: "DOOM Eternal", description: "Cehennemden gelen yaratıkları parçaladığınız yüksek tempolu bir FPS deneyimi.", image: "images/doom_eternal.jpg" }
+  ];
+
+  const today = new Date();
+  const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  const index = seed % allGames.length;
+  const game = allGames[index];
+
+  window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("randomGame").textContent = `🎯 Bugünün oyunu: ${game.name}`;
+    document.getElementById("gameDescription").textContent = game.description;
+    document.getElementById("gameImage").src = game.image;
+    document.getElementById("gameImage").alt = `${game.name} görseli`;
+  });
+</script>
 
 <!-- Hakkımda Bölümü -->
   <div id="about" class="h-32 -mt-32"></div>
@@ -370,6 +416,7 @@
     </div>
     <p class="text-sm">© 2025 GameCapsuleTV – Tüm hakları saklıdır.</p>
   </footer>
+  
 <!-- Sürpriz Modal -->
 <div id="surpriseModal" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 backdrop-blur-md">
   <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl px-8 py-10 max-w-xl w-full shadow-2xl border border-purple-500 text-center animate__animated animate__fadeInUp">
