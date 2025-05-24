@@ -15,45 +15,6 @@
       color: white;
       font-family: 'Rubik', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
-    <!-- Confetti Butonu ve Efekti (Footer üstüne eklenebilir) -->
-<div class="fixed bottom-6 right-6 z-50">
-  <button id="confettiBtn" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-600 hover:to-purple-600 text-white px-6 py-3 rounded-full shadow-xl font-semibold text-lg transition transform hover:scale-110 focus:outline-none">
-    🎉 Sürpriz!
-  </button>
-</div>
-
-<!-- Confetti Kütüphanesi -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
-<!-- Confetti Buton Scripti -->
-<script>
-  const btn = document.getElementById("confettiBtn");
-  btn.addEventListener("click", () => {
-    const duration = 1500;
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 2000 };
-
-    const interval = setInterval(() => {
-      const timeLeft = animationEnd - Date.now();
-      if (timeLeft <= 0) return clearInterval(interval);
-
-      const particleCount = 50 * (timeLeft / duration);
-      confetti(Object.assign({}, defaults, {
-        particleCount,
-        origin: {
-          x: (btn.offsetLeft + btn.offsetWidth / 2) / window.innerWidth,
-          y: (btn.offsetTop + btn.offsetHeight / 2) / window.innerHeight
-        }
-      }));
-    }, 250);
-
-    setTimeout(() => {
-      alert("🎮 GameCapsuleTV seni seviyor ❤️");
-    }, 300);
-  });
-</script>
-
     #preloader {
       opacity: 1;
       transition: opacity 0.6s ease;
@@ -104,7 +65,7 @@
   .nav-underline:hover::after {
     width: 100%;
   }
-</style>
+  </style>
   <script>
     window.addEventListener("load", () => {
       const loader = document.querySelector("#preloader");
@@ -119,6 +80,45 @@
       if (e.ctrlKey && e.key === "g") {
         alert("🎮 GameCapsuleTV seni seviyor ❤️");
       }
+    });
+  </script>
+</head>
+<body>
+  <!-- Sürpriz Butonu (Tüm cihazlar için) -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button id="confettiBtn" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-pink-600 hover:to-purple-600 text-white px-6 py-3 rounded-full shadow-xl font-semibold text-lg transition transform hover:scale-110 focus:outline-none">
+      🎉 Sürpriz!
+    </button>
+  </div>
+
+  <!-- Confetti Kütüphanesi -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <!-- Confetti ve Sürpriz Mesaj Scripti -->
+  <script>
+    const btn = document.getElementById("confettiBtn");
+    btn.addEventListener("click", () => {
+      const duration = 1500;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 2000 };
+
+      const interval = setInterval(() => {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti(Object.assign({}, defaults, {
+          particleCount,
+          origin: {
+            x: (btn.offsetLeft + btn.offsetWidth / 2) / window.innerWidth,
+            y: (btn.offsetTop + btn.offsetHeight / 2) / window.innerHeight
+          }
+        }));
+      }, 250);
+
+      setTimeout(() => {
+        alert("🎮 GameCapsuleTV seni seviyor ❤️\n\nBu sürpriz sadece senin için hazırlandı!");
+      }, 300);
     });
   </script>
 </head>
