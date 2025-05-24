@@ -381,7 +381,7 @@ const descriptionsData = {
 
       const descriptions = descriptionsData;
       const descriptionText = descriptions[suggestion] || "Bu oyun için açıklama bulunamadı.";
-
+      // Only render the descriptionText for the selected suggestion, not the whole descriptionsData object
       document.getElementById("quizResult").innerHTML = `🎮 <strong>Önerimiz:</strong> ${suggestion}<br><span class='text-sm text-white block mt-1 italic'>${descriptionText}</span>`;
     });
   });
