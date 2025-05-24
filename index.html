@@ -290,13 +290,13 @@
   </style>
 </head>
 <body>
- <!-- Bugünün Tavsiyesi -->
-<section class="p-8" data-aos="fade-up">
-  <h2 class="text-3xl font-bold mb-6 text-white">Bugünün Tavsiyesi 🎮</h2>
-  <div class="bg-gray-800 rounded-2xl p-6 text-center shadow-xl text-white max-w-2xl mx-auto">
-    <img id="gameImage" class="w-32 h-32 mx-auto rounded-full shadow-lg border-4 border-purple-600 mb-4" src="" alt="Oyun görseli" />
-    <div id="randomGame" class="text-xl font-semibold">Yükleniyor...</div>
-    <div id="gameDescription" class="mt-2 text-base font-normal text-gray-300"></div>
+ !-- Bugünün Tavsiyesi -->
+<section class="py-16 px-6 md:px-0" data-aos="zoom-in-up">
+  <h2 class="text-4xl md:text-5xl font-extrabold mb-12 text-center text-white tracking-wide animate__animated animate__fadeIn">🎮 Bugünün Tavsiyesi</h2>
+  <div class="bg-gradient-to-br from-purple-900 via-gray-900 to-black rounded-3xl p-10 text-center shadow-2xl text-white max-w-4xl mx-auto border-4 border-purple-800 backdrop-blur-xl animate__animated animate__fadeInUp">
+    <img id="gameImage" class="w-36 h-36 md:w-40 md:h-40 mx-auto rounded-full shadow-lg ring-4 ring-purple-500 border-2 border-white object-cover mb-6 animate__animated animate__zoomIn" src="" alt="Oyun görseli" />
+    <div id="randomGame" class="text-2xl md:text-3xl font-bold text-pink-300 drop-shadow-md mb-2 animate__animated animate__fadeInUp">Yükleniyor...</div>
+    <div id="gameDescription" class="mt-2 text-lg md:text-xl font-medium text-purple-100 leading-relaxed animate__animated animate__fadeInUp"></div>
   </div>
 </section>
 
@@ -308,7 +308,35 @@
     { name: "Outer Wilds", description: "Zaman döngüsünde sıkışmış bir gezgin olarak evrenin gizemlerini çözdüğünüz keşif temelli bir oyun.", image: "images/outer_wilds.jpg" },
     { name: "Spiritfarer", description: "Ölen ruhları son yolculuklarına uğurladığınız duygusal bir menajerlik ve inşa oyunu.", image: "images/spiritfarer.jpg" },
     { name: "The Witcher 3", description: "Geralt ile büyü, canavarlar ve siyasi entrikalarla dolu bir dünyada görevler üstleniyorsunuz.", image: "images/witcher3.jpg" },
-    { name: "DOOM Eternal", description: "Cehennemden gelen yaratıkları parçaladığınız yüksek tempolu bir FPS deneyimi.", image: "images/doom_eternal.jpg" }
+    { name: "DOOM Eternal", description: "Cehennemden gelen yaratıkları parçaladığınız yüksek tempolu bir FPS deneyimi.", image: "images/doom_eternal.jpg" },
+    { name: "Red Dead Redemption 2", description: "Amerikan Vahşi Batısı'nda geçen, detaylı açık dünyası ve dramatik hikâyesiyle öne çıkan aksiyon-macera oyunu.", image: "images/rdr2.jpg" },
+    { name: "Slay the Spire", description: "Kart toplayarak deste oluşturduğunuz ve roguelike unsurlar taşıyan strateji oyunu.", image: "images/slay_the_spire.jpg" },
+    { name: "Hades", description: "Yunan mitolojisinden ilham alan, hızlı tempolu roguelike aksiyon oyunu.", image: "images/hades.jpg" },
+    { name: "Firewatch", description: "Ormanda geçen gizemli ve duygusal bir hikâyeye sahip birinci şahıs macera oyunu.", image: "images/firewatch.jpg" },
+    { name: "Ori and the Blind Forest", description: "Görsel açıdan büyüleyici, duygusal hikâyeli bir platform/metroidvania oyunu.", image: "images/ori_and_the_blind_forest.jpg" },
+    { name: "Unpacking", description: "Kutuları açarak bir karakterin hayatını sessizce keşfettiğiniz huzurlu bir bulmaca oyunu.", image: "images/unpacking.jpg" },
+    { name: "The Stanley Parable", description: "Oyuncuya anlatıcının yönlendirmelerine göre veya onlara karşı seçimler yapma özgürlüğü tanıyan deneysel bir anlatı oyunu.", image: "images/stanley_parable.jpg" },
+    { name: "Katana ZERO", description: "Zamanı kontrol ederek stilize suikastlar gerçekleştirdiğiniz hızlı tempolu aksiyon oyunu.", image: "images/katana_zero.jpg" },
+    { name: "Cuphead", description: "1930'lar çizgi film estetiğine sahip, yüksek zorluk seviyesinde boss savaşları içeren aksiyon platform oyunu.", image: "images/cuphead.jpg" },
+    { name: "Journey", description: "Görsel anlatımı güçlü, çevrim içi iş birliği içeren meditatif bir keşif oyunu.", image: "images/journey.jpg" },
+    { name: "Undertale", description: "Seçimlerinize göre barışçıl ya da saldırgan ilerleyebileceğiniz retro tarzda RPG oyunu.", image: "images/undertale.jpg" },
+    { name: "Portal 2", description: "Portal silahıyla bulmacalar çözdüğünüz mizahi ve zekice yazılmış birinci şahıs oyun.", image: "images/portal2.jpg" },
+    { name: "Tunic", description: "Zelda'dan esinlenen bu oyunda sevimli bir tilki ile keşfe çıkıyorsunuz.", image: "images/tunic.jpg" },
+    { name: "INSIDE", description: "Gizemli bir atmosferde ilerlediğiniz kısa ama etkileyici bir platform oyunu.", image: "images/inside.jpg" },
+    { name: "Return of the Obra Dinn", description: "Bir gemideki mürettebatın başına gelenleri çözmeye çalıştığınız dedektiflik oyunu.", image: "images/obra_dinn.jpg" },
+    { name: "Fez", description: "2D bir dünyada 3D perspektif dönüşleriyle bulmacaları çözdüğünüz bir platform oyunu.", image: "images/fez.jpg" },
+    { name: "A Short Hike", description: "Sevimli bir kuş karakterle doğayla iç içe rahatlatıcı bir yürüyüş deneyimi.", image: "images/a_short_hike.jpg" },
+    { name: "Death's Door", description: "Karga ruh hasadı yapan bir karakteri yönettiğiniz, aksiyon dolu bir indie macera oyunu.", image: "images/deaths_door.jpg" },
+    { name: "Eastward", description: "Post-apokaliptik bir dünyada iki karakterin başından geçen macerayı anlatan RPG oyunu.", image: "images/eastward.jpg" },
+    { name: "Bastion", description: "Çöküş sonrası bir dünyada geçen ve anlatıcısıyla dikkat çeken izometrik aksiyon RPG.", image: "images/bastion.jpg" },
+    { name: "Transistor", description: "Gizemli bir şehirde geçen, stratejik dövüş sistemine sahip bilim kurgu temalı RPG.", image: "images/transistor.jpg" },
+    { name: "Gris", description: "Kayıp ve kabullenme temalarını işleyen, sanat eseri gibi bir platform oyunu.", image: "images/gris.jpg" },
+    { name: "Hyper Light Drifter", description: "Piksel sanatıyla süslenmiş, hızlı ve derinlikli bir aksiyon-macera oyunu.", image: "images/hyper_light_drifter.jpg" },
+    { name: "Oxenfree", description: "Doğaüstü olaylarla iç içe geçmiş bir gençlik hikayesi.", image: "images/oxenfree.jpg" },
+    { name: "Night in the Woods", description: "Melankolik ama mizahi bir kasaba hikâyesi, keşif ve diyalog ağırlıklı bir anlatı oyunu.", image: "images/night_in_the_woods.jpg" },
+    { name: "Little Misfortune", description: "Sıradışı ve kara mizah içeren bir macera oyunu.", image: "images/little_misfortune.jpg" },
+    { name: "Papers, Please", description: "Bir sınır memuru olarak vicdanınızla talimatlar arasında kaldığınız etik bulmaca oyunu.", image: "images/papers_please.jpg" },
+    { name: "Loop Hero", description: "Kahramanınızı pasif şekilde izlerken dünya inşa ettiğiniz bir kart tabanlı roguelike.", image: "images/loop_hero.jpg" }
   ];
 
   const today = new Date();
@@ -323,6 +351,7 @@
     document.getElementById("gameImage").alt = `${game.name} görseli`;
   });
 </script>
+
 
 <!-- Hakkımda Bölümü -->
   <div id="about" class="h-32 -mt-32"></div>
